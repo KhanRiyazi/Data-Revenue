@@ -1,0 +1,964 @@
+{
+    "mission": "I build production systems and document everything I learn along the way. This is my public learning log — projects, questions, and the resources that answered them.",
+    "emailjs": {
+        "publicKey": "",
+        "serviceId": "",
+        "templateId": ""
+    },
+    "learningPath": {
+        "heading": "Current Learning Tracks",
+        "tracks": [
+            {
+                "name": "Python Backend Deep Dive",
+                "progress": 78,
+                "focus": "FastAPI advanced patterns, async optimisation, testing strategies",
+                "modules": [
+                    "FastAPI service development",
+                    "Deployment & CI"
+                ]
+            },
+            {
+                "name": "ML Production Engineering",
+                "progress": 62,
+                "focus": "Model monitoring, drift detection, CI/CD for ML",
+                "modules": [
+                    "Model deployment",
+                    "Intro to deep learning & LLMs"
+                ]
+            },
+            {
+                "name": "Data Storytelling",
+                "progress": 45,
+                "focus": "Dashboard design, executive communication, causal inference",
+                "modules": [
+                    "Dashboards that get used",
+                    "Communicating results"
+                ]
+            }
+        ]
+    },
+    "trustStats": [
+        {
+            "num": "40+",
+            "lbl": "Repositories Shipped"
+        },
+        {
+            "num": "12",
+            "lbl": "ML Models in Prod"
+        },
+        {
+            "num": "98%",
+            "lbl": "On-Time Delivery"
+        },
+        {
+            "num": "3x",
+            "lbl": "Avg. Client ROI"
+        }
+    ],
+    "services": [
+        {
+            "icon": "fa-server",
+            "title": "High‑Performance APIs",
+            "desc": "FastAPI backends that handle thousands of requests with clean, typed code.",
+            "impact": "Reduced latency by 40%"
+        },
+        {
+            "icon": "fa-spider",
+            "title": "Scraping & Automation",
+            "desc": "Robust data extraction that survives redesigns. ETL pipelines that just work.",
+            "impact": "Saved 20+ hrs/week"
+        },
+        {
+            "icon": "fa-brain",
+            "title": "ML & Business Analytics",
+            "desc": "Forecasting, churn prediction, and dashboards that drive decisions.",
+            "impact": "Boosted revenue 15%"
+        }
+    ],
+    "projects": [
+        {
+            "type": "code",
+            "size": "large",
+            "seed": "rz-lms-9",
+            "ratio": "700/900",
+            "tag": "FastAPI",
+            "title": "FastAPI LMS",
+            "desc": "Learning‑management backend — enrollment, progress tracking, role‑based access.",
+            "impact": "Shipped in 3 weeks",
+            "image": "https://picsum.photos/seed/lms/600/350",
+            "codeUrl": "https://github.com/KhanRiyazi/fastAPI_LMS",
+            "liveUrl": null,
+            "visitUrl": "https://github.com/KhanRiyazi/fastAPI_LMS",
+            "visitLabel": "View Code",
+            "learnings": [
+                "FastAPI dependency injection for authentication",
+                "SQLModel relationships and joins",
+                "Pytest fixtures for database testing",
+                "Async endpoint design patterns"
+            ],
+            "codeSnippet": "<span class=\"code-com\"># main.py — enrollment router</span>\n<span class=\"code-kw\">from</span> fastapi <span class=\"code-kw\">import</span> APIRouter, Depends, HTTPException\n<span class=\"code-kw\">from</span> sqlmodel <span class=\"code-kw\">import</span> Session, select\n\nrouter = APIRouter(prefix=<span class=\"code-str\">\"/enrollments\"</span>, tags=[<span class=\"code-str\">\"enrollments\"</span>])\n\n<span class=\"code-kw\">@router</span>.post(<span class=\"code-str\">\"{course_id}\"</span>)\n<span class=\"code-kw\">async def</span> enroll_student(\n    course_id: <span class=\"code-kw\">int</span>,\n    student: Student = Depends(get_current_student),\n    session: Session = Depends(get_session),\n):\n    existing = session.exec(\n        select(Enrollment).where(\n            Enrollment.course_id == course_id,\n            Enrollment.student_id == student.id,\n        )\n    ).first()\n    <span class=\"code-kw\">if</span> existing:\n        <span class=\"code-kw\">raise</span> HTTPException(<span class=\"code-kw\">400</span>, <span class=\"code-str\">\"Already enrolled\"</span>)\n\n    enrollment = Enrollment(course_id=course_id, student_id=student.id)\n    session.add(enrollment)\n    session.commit()\n    <span class=\"code-kw\">return</span> {<span class=\"code-str\">\"status\"</span>: <span class=\"code-str\">\"enrolled\"</span>, <span class=\"code-str\">\"course_id\"</span>: course_id}"
+        },
+        {
+            "type": "code",
+            "size": "med",
+            "seed": "rz-card-7",
+            "ratio": "700/450",
+            "tag": "ML",
+            "title": "AI Digital Card",
+            "desc": "Production microservice generating dynamic profile cards.",
+            "impact": "Handles 10k+ views/mo",
+            "image": "https://picsum.photos/seed/card/600/350",
+            "codeUrl": null,
+            "liveUrl": "https://ai-digital-card.onrender.com/",
+            "visitUrl": "https://ai-digital-card.onrender.com/",
+            "visitLabel": "Live Demo",
+            "learnings": [
+                "FastAPI static file serving",
+                "Template rendering with Jinja2",
+                "Asynchronous profile fetching",
+                "Render deployment workflows"
+            ],
+            "codeSnippet": "<span class=\"code-com\"># app.py — card render endpoint</span>\n<span class=\"code-kw\">from</span> fastapi <span class=\"code-kw\">import</span> FastAPI\n<span class=\"code-kw\">from</span> fastapi.responses <span class=\"code-kw\">import</span> HTMLResponse\n\napp = FastAPI()\n\n<span class=\"code-kw\">@app</span>.get(<span class=\"code-str\">\"/card/{username}\"</span>, response_class=HTMLResponse)\n<span class=\"code-kw\">async def</span> render_card(username: <span class=\"code-kw\">str</span>):\n    profile = <span class=\"code-kw\">await</span> fetch_profile(username)\n    <span class=\"code-kw\">return</span> templates.TemplateResponse(\n        <span class=\"code-str\">\"card.html\"</span>,\n        {<span class=\"code-str\">\"profile\"</span>: profile, <span class=\"code-str\">\"theme\"</span>: profile.theme},\n    )"
+        },
+        {
+            "type": "code",
+            "size": "small",
+            "seed": "rz-train-3",
+            "ratio": "500/450",
+            "tag": "ML",
+            "title": "AI Training Hub",
+            "desc": "Model‑serving endpoint for a small training‑data platform.",
+            "impact": "98% prediction accuracy",
+            "image": "https://picsum.photos/seed/train/600/350",
+            "codeUrl": null,
+            "liveUrl": "https://ai-training-9.onrender.com/",
+            "visitUrl": "https://ai-training-9.onrender.com/",
+            "visitLabel": "Live Demo",
+            "learnings": [
+                "Saving and loading scikit‑learn models with joblib",
+                "Building Pydantic request schemas",
+                "Returning prediction probabilities"
+            ],
+            "codeSnippet": "<span class=\"code-com\"># predict.py</span>\n<span class=\"code-kw\">import</span> joblib\n<span class=\"code-kw\">from</span> fastapi <span class=\"code-kw\">import</span> APIRouter\n\nrouter = APIRouter()\nmodel = joblib.load(<span class=\"code-str\">\"models/classifier.pkl\"</span>)\n\n<span class=\"code-kw\">@router</span>.post(<span class=\"code-str\">\"/predict\"</span>)\n<span class=\"code-kw\">def</span> predict(features: FeaturePayload):\n    x = features.to_array()\n    proba = model.predict_proba([x])[<span class=\"code-kw\">0</span>]\n    <span class=\"code-kw\">return</span> {<span class=\"code-str\">\"label\"</span>: model.classes_[proba.argmax()], <span class=\"code-str\">\"confidence\"</span>: round(<span class=\"code-kw\">float</span>(proba.max()), <span class=\"code-kw\">3</span>)}"
+        },
+        {
+            "type": "link",
+            "size": "small",
+            "seed": "rz-yt-5",
+            "ratio": "500/450",
+            "tag": "Education",
+            "title": "YouTube — @ThisOne-007",
+            "desc": "Educational content on tech & programming.",
+            "impact": "100k+ views",
+            "image": "https://picsum.photos/seed/youtube/600/350",
+            "codeUrl": null,
+            "liveUrl": null,
+            "visitUrl": "https://www.youtube.com/@ThisOne-007",
+            "visitLabel": "Watch",
+            "learnings": []
+        },
+        {
+            "type": "link",
+            "size": "med",
+            "seed": "rz-behance-2",
+            "ratio": "700/450",
+            "tag": "Design",
+            "title": "Behance · Design Systems",
+            "desc": "Brand systems & interface concepts.",
+            "impact": "Featured project",
+            "image": "https://picsum.photos/seed/design/600/350",
+            "codeUrl": null,
+            "liveUrl": null,
+            "visitUrl": "https://www.behance.net/rizwanali3251",
+            "visitLabel": "View Design",
+            "learnings": []
+        },
+        {
+            "type": "link",
+            "size": "med",
+            "seed": "rz-github-1",
+            "ratio": "700/450",
+            "tag": "FastAPI",
+            "title": "Full GitHub Archive",
+            "desc": "Everything else — smaller tools, experiments, full‑stack work.",
+            "impact": "Open source",
+            "image": "https://picsum.photos/seed/github/600/350",
+            "codeUrl": "https://github.com/KhanRiyazi?tab=repositories",
+            "liveUrl": null,
+            "visitUrl": "https://github.com/KhanRiyazi?tab=repositories",
+            "visitLabel": "Browse",
+            "learnings": []
+        }
+    ],
+    "capabilities": [
+        {
+            "name": "FastAPI",
+            "pct": 95
+        },
+        {
+            "name": "Python",
+            "pct": 92
+        },
+        {
+            "name": "SQLAlchemy / SQL",
+            "pct": 85
+        },
+        {
+            "name": "REST API design",
+            "pct": 90
+        },
+        {
+            "name": "BeautifulSoup / Selenium",
+            "pct": 88
+        },
+        {
+            "name": "ML / scikit-learn",
+            "pct": 80
+        },
+        {
+            "name": "Business analytics",
+            "pct": 76
+        },
+        {
+            "name": "Docker & deployment",
+            "pct": 78
+        },
+        {
+            "name": "UI / product design",
+            "pct": 74
+        },
+        {
+            "name": "Data analysis (pandas)",
+            "pct": 82
+        }
+    ],
+    "curriculum": {
+        "python": {
+            "modules": [
+                {
+                    "t": "Python fundamentals & clean code",
+                    "d": "Typing, virtual envs, packaging, testing with pytest."
+                },
+                {
+                    "t": "Web scraping with BeautifulSoup",
+                    "d": "Parsing HTML/XML, pagination, rate limiting, retries."
+                },
+                {
+                    "t": "Browser automation with Selenium",
+                    "d": "Headless drivers, waits, login flows, anti‑bot handling."
+                },
+                {
+                    "t": "FastAPI service development",
+                    "d": "Routing, Pydantic models, dependency injection, auth."
+                },
+                {
+                    "t": "Deployment & CI",
+                    "d": "Docker, environment config, GitHub Actions, Render/railway."
+                }
+            ],
+            "questions": [
+                {
+                    "q": "How do you handle a site that renders content with JavaScript?",
+                    "a": "Start by viewing the page source, not the rendered DOM — if the data you need isn't in the raw HTML, a plain requests + BeautifulSoup call won't see it either. From there the approach splits three ways: check if the page is calling a JSON API you can hit directly (fastest, most stable); use Selenium or Playwright with an explicit wait for the specific element or network state you need, never a fixed sleep; or, if the site is truly SPA-only, render it headlessly and parse the resulting DOM. The interviewer is listening for whether you reach for a headless browser by default (slow, brittle) or only once you've ruled out a lighter option.",
+                    "link": "https://www.selenium.dev/documentation/webdriver/waits/",
+                    "linkLabel": "Selenium: Waiting Strategies"
+                },
+                {
+                    "q": "How do you make a scraper resilient to layout changes?",
+                    "a": "Treat the site's markup as an unstable contract. Select on stable attributes (IDs, data-* attributes, ARIA labels) instead of deep CSS paths or nth-child chains that break the moment a div is inserted upstream. Centralize every selector in one config or constants file so a site redesign means editing one place, not hunting through the codebase. Most importantly, validate the shape of what you scraped (expected fields present, types correct) and fail loudly with a clear error rather than silently returning empty or malformed records — silent breakage is the version of this bug that actually costs money in production.",
+                    "link": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/",
+                    "linkLabel": "BeautifulSoup documentation"
+                },
+                {
+                    "q": "What's the difference between async and sync in FastAPI, and when does it matter?",
+                    "a": "async def hands control back to the event loop the moment your code hits an await on an I/O-bound operation (a DB call, an HTTP request, a file read), so FastAPI can serve other requests while that one waits. Define a route with plain def instead and FastAPI runs it in a worker thread pool so it still doesn't block the loop — but that pool has a finite size, so under heavy concurrent load a sync endpoint doing blocking I/O will eventually queue. The mistake to call out explicitly: writing async def but then calling a blocking (non-async) library inside it. That blocks the entire event loop for every request, which is worse than just using def in the first place.",
+                    "link": "https://fastapi.tiangolo.com/async/",
+                    "linkLabel": "FastAPI: Concurrency and async/await"
+                },
+                {
+                    "q": "How do you avoid getting an IP banned while scraping at scale?",
+                    "a": "Lead with the constraint that actually matters first: check robots.txt and the site's terms before writing a single line, since some data simply isn't yours to take regardless of technique. Beyond that, rate-limit deliberately (don't hammer a server faster than a human would browse), add jitter to request timing so traffic doesn't look robotic, and rotate sessions/IPs only as a way to spread legitimate load — not to evade a block you've already earned. If a site is actively rate-limiting you, that's a signal to slow down and cache, not a puzzle to route around.",
+                    "link": "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+                    "linkLabel": "Google: robots.txt introduction"
+                }
+            ]
+        },
+        "ds": {
+            "modules": [
+                {
+                    "t": "Statistics & experiment design",
+                    "d": "Distributions, hypothesis testing, A/B test power analysis."
+                },
+                {
+                    "t": "pandas & data wrangling",
+                    "d": "Cleaning, joins, groupby pipelines, handling missing data."
+                },
+                {
+                    "t": "Classical ML with scikit-learn",
+                    "d": "Regression, trees/ensembles, cross‑validation, metrics."
+                },
+                {
+                    "t": "Intro to deep learning & LLMs",
+                    "d": "Neural net basics, embeddings, calling and evaluating LLM APIs."
+                },
+                {
+                    "t": "Model deployment",
+                    "d": "Serving predictions behind a FastAPI endpoint, monitoring drift."
+                }
+            ],
+            "questions": [
+                {
+                    "q": "How do you choose between precision and recall for a given problem?",
+                    "a": "Don't lead with a metric — lead with the cost of each error type. In fraud detection, a missed fraud case (false negative) usually costs more than a false alarm (false positive), so you optimize for recall and accept lower precision. In a spam filter, a false positive that buries a real email is worse than letting a spam message through, so precision wins. Say this out loud in the interview: 'it depends on which mistake is more expensive here,' then walk through the specific business context before naming a metric. Only reach for F1 as a single number when the two error costs are genuinely balanced, which is rarer than most candidates assume.",
+                    "link": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+                    "linkLabel": "scikit-learn: Metrics & scoring"
+                },
+                {
+                    "q": "What's the difference between bagging and boosting?",
+                    "a": "Both combine many weak models, but they attack different problems. Bagging (e.g. Random Forest) trains models in parallel on independent bootstrap samples of the data and averages them — this reduces variance, so it helps most when your base model overfits. Boosting (e.g. Gradient Boosting, AdaBoost) trains models sequentially, where each new model is trained specifically to correct the errors of the ensemble so far — this reduces bias, so it helps most when your base model underfits. The practical follow-up an interviewer wants: bagging parallelizes trivially and resists overfitting better; boosting is more sample‑efficient but needs more careful tuning (learning rate, early stopping) to avoid overfitting the training data.",
+                    "link": "https://scikit-learn.org/stable/modules/ensemble.html",
+                    "linkLabel": "scikit-learn: Ensemble methods"
+                },
+                {
+                    "q": "How do you detect and handle data leakage?",
+                    "a": "Ask one question for every feature: 'would this value actually be available at the moment I need to make the prediction?' If a feature is derived from data that only exists after the outcome happened, or if it was computed using the full dataset (mean, scaler, PCA) before the train/test split, it's leaking. The fix isn't a single trick — it's discipline: fit every preprocessing step only on the training fold, wrap the whole pipeline in one object so it can't be applied out of order, and for time‑series data use a split that respects chronology instead of a random shuffle. A model that looks suspiciously good in cross‑validation is the first clue to check for this.",
+                    "link": "https://scikit-learn.org/stable/common_pitfalls.html",
+                    "linkLabel": "scikit-learn: Common pitfalls (data leakage)"
+                },
+                {
+                    "q": "How would you evaluate whether an LLM‑based feature is actually working in production?",
+                    "a": "Resist the urge to trust a few good‑looking demo outputs — that's the trap most teams fall into. Build a small offline evaluation set of real inputs with known‑good expected outputs (or clear grading criteria) and re‑run it on every model or prompt change. Layer in human review sampling for the cases automated metrics can't judge well (tone, correctness of open‑ended answers). Most importantly, tie the feature to a downstream business metric you already track — support ticket resolution time, conversion, retention — because a model can score well on an eval set and still not move the number that actually matters.",
+                    "link": "https://huggingface.co/docs/evaluate/index",
+                    "linkLabel": "Hugging Face: Evaluate library"
+                }
+            ]
+        },
+        "biz": {
+            "modules": [
+                {
+                    "t": "Business math foundations",
+                    "d": "Growth rates, unit economics, probability for decision‑making."
+                },
+                {
+                    "t": "A/B testing & causal thinking",
+                    "d": "Designing valid tests, confounders, correlation vs. causation."
+                },
+                {
+                    "t": "Forecasting & KPI modelling",
+                    "d": "Time series basics, cohort analysis, revenue forecasting."
+                },
+                {
+                    "t": "Dashboards that get used",
+                    "d": "Picking the right chart, avoiding vanity metrics, executive summaries."
+                },
+                {
+                    "t": "Communicating results",
+                    "d": "Translating a model's output into a decision a stakeholder can act on."
+                }
+            ],
+            "questions": [
+                {
+                    "q": "A metric moved 20% overnight — how do you investigate?",
+                    "a": "Resist jumping straight to a causal story — most overnight metric swings are instrumentation, not behavior. Check first for pipeline or tracking changes that shipped around the same time: a deploy, a schema change, a tagging update. Next, segment the movement by cohort, channel, device, and geography — a real behavioral shift is usually broad, while a tracking bug is often concentrated in one segment (one browser, one region, one traffic source). Only once those are ruled out do you look for a genuine external cause (a competitor's move, seasonality, a marketing campaign). Naming this order out loud is what separates a senior answer from a junior one.",
+                    "link": "https://www.itl.nist.gov/div898/handbook/",
+                    "linkLabel": "NIST/SEMATECH e‑Handbook of Statistical Methods"
+                },
+                {
+                    "q": "How do you explain statistical significance to a non‑technical stakeholder?",
+                    "a": "Avoid the word 'proof' entirely — frame it as 'how surprising this result would be if nothing had actually changed.' A statistically significant result just means the difference is unlikely to be random noise at your chosen confidence threshold; it says nothing about whether the difference is big enough to matter commercially. Always pair it with practical significance: a 0.1% lift can be statistically significant with enough traffic and still not be worth shipping. And flag the classic trap explicitly — checking results early and stopping the moment they look good inflates the false‑positive rate, so the sample size needs to be decided before the test starts, not adjusted based on how it's trending.",
+                    "link": "https://www.evanmiller.org/how-not-to-run-an-ab-test.html",
+                    "linkLabel": "Evan Miller: How Not to Run an A/B Test"
+                },
+                {
+                    "q": "What makes a dashboard actually get used versus ignored?",
+                    "a": "Start from the decision, not the data. Every chart on the dashboard should map to a question someone actually needs answered before acting — if you can't name that decision, cut the chart. Lean on how people actually perceive charts: position and length (bar and line charts) are read far more accurately at a glance than color or area, so save color for drawing attention to what's abnormal rather than encoding the primary value. Default to the time window the audience actually thinks in (this week, this quarter) instead of whatever the database happened to return, and put the one number that matters most in the top‑left, since that's where eyes land first.",
+                    "link": "https://www.nngroup.com/articles/dashboards-preattentive/",
+                    "linkLabel": "Nielsen Norman Group: Dashboards & preattentive processing"
+                },
+                {
+                    "q": "How would you forecast revenue for a product with seasonal demand?",
+                    "a": "Start by decomposing the series into trend, seasonality, and residual noise rather than fitting a single curve straight through raw historical revenue — mixing a real seasonal dip with a genuine downward trend leads to bad forecasts either way. Once decomposed, choose a model sized to the data you actually have: a simple moving‑average or exponential‑smoothing model for a short, noisy history; something like SARIMA or Prophet once you have several full seasonal cycles to learn from. Whatever you use, report a range, not a single number — stakeholders making budget decisions need to know how wide the uncertainty is, especially heading into a season you've only seen once or twice before.",
+                    "link": "https://www.statsmodels.org/stable/generated/statsmodels.tsa.seasonal.seasonal_decompose.html",
+                    "linkLabel": "statsmodels: seasonal_decompose"
+                }
+            ]
+        }
+    },
+    "blog": [
+        {
+            "title": "Why FastAPI is the best choice for ML microservices",
+            "date": "2025-06-10",
+            "excerpt": "In this post, I share my experience building high‑performance prediction endpoints with FastAPI and why it outshines Flask for production ML.",
+            "link": "#"
+        },
+        {
+            "title": "Scraping at scale: How I built a pipeline that survived 2 redesigns",
+            "date": "2025-05-28",
+            "excerpt": "A deep dive into resilient scraping with BeautifulSoup, Selenium, and robust error handling.",
+            "link": "#"
+        },
+        {
+            "title": "From Jupyter to production: Serving models with confidence",
+            "date": "2025-05-12",
+            "excerpt": "How I transition from notebook experiments to production‑ready APIs, with monitoring and drift detection.",
+            "link": "#"
+        }
+    ],
+    "dashboard": {
+        "stats": [
+            {
+                "num": "40+",
+                "lbl": "Repositories shipped",
+                "trend": "↑ steady"
+            },
+            {
+                "num": "12",
+                "lbl": "ML models in production",
+                "trend": "↑ 3 this yr"
+            },
+            {
+                "num": "1.4M+",
+                "lbl": "Data points processed",
+                "trend": "↑ growing"
+            },
+            {
+                "num": "98%",
+                "lbl": "On‑time delivery",
+                "trend": "✓ on track"
+            }
+        ],
+        "modelMetrics": [
+            {
+                "name": "Accuracy",
+                "pct": 94
+            },
+            {
+                "name": "Precision",
+                "pct": 91
+            },
+            {
+                "name": "Recall",
+                "pct": 88
+            },
+            {
+                "name": "F1 score",
+                "pct": 89
+            },
+            {
+                "name": "Uptime",
+                "pct": 99
+            }
+        ],
+        "feed": [
+            {
+                "label": "FastAPI LMS — enrollment module",
+                "tag": "Shipped"
+            },
+            {
+                "label": "Churn model retrained on Q2 data",
+                "tag": "Deployed"
+            },
+            {
+                "label": "Scraper hardened against layout change",
+                "tag": "Fixed"
+            },
+            {
+                "label": "Forecasting endpoint moved behind FastAPI",
+                "tag": "Deployed"
+            },
+            {
+                "label": "Client onboarding call",
+                "tag": "Scheduled"
+            }
+        ],
+        "monthly": [
+            3,
+            4,
+            2,
+            5,
+            4,
+            6,
+            5,
+            7,
+            6,
+            8,
+            7,
+            9
+        ],
+        "learningHoursThisWeek": 14,
+        "weeklyActivity": [
+            2,
+            3,
+            1,
+            4,
+            2,
+            1,
+            1
+        ]
+    },
+    "resources": [
+        {
+            "name": "Python Docs",
+            "desc": "Official language reference",
+            "url": "https://docs.python.org/3/",
+            "category": "Core",
+            "stage": "beginner",
+            "learnings": [
+                "Master Python syntax and built‑in data types",
+                "Understand the standard library – os, sys, json, re",
+                "Learn about the Python data model and dunder methods",
+                "Explore the global interpreter lock (GIL) and its implications"
+            ]
+        },
+        {
+            "name": "Real Python",
+            "desc": "Tutorials with production‑ready depth",
+            "url": "https://realpython.com/",
+            "category": "Tutorials",
+            "stage": "beginner",
+            "learnings": [
+                "Follow step‑by‑step tutorials on real‑world projects",
+                "Learn best practices for testing, packaging, and deployment",
+                "Get hands‑on with web frameworks, data science, and automation"
+            ]
+        },
+        {
+            "name": "Python Packaging User Guide",
+            "desc": "Modern packaging & pyproject.toml",
+            "url": "https://packaging.python.org/",
+            "category": "Tooling",
+            "stage": "intermediate",
+            "learnings": [
+                "Understand the modern packaging workflow with pyproject.toml",
+                "Build and publish your own Python packages to PyPI",
+                "Manage dependencies and virtual environments efficiently"
+            ]
+        },
+        {
+            "name": "Pytest Docs",
+            "desc": "The gold‑standard testing framework",
+            "url": "https://docs.pytest.org/",
+            "category": "Testing",
+            "stage": "intermediate",
+            "learnings": [
+                "Write clean, maintainable tests with fixtures and parametrization",
+                "Use plugins for coverage, mocking, and parallel execution",
+                "Adopt test‑driven development (TDD) practices"
+            ]
+        },
+        {
+            "name": "FastAPI Docs",
+            "desc": "Full framework reference",
+            "url": "https://fastapi.tiangolo.com/",
+            "category": "Backend",
+            "stage": "intermediate",
+            "learnings": [
+                "Build high‑performance APIs with automatic OpenAPI docs",
+                "Implement dependency injection for clean, testable code",
+                "Handle async endpoints and background tasks",
+                "Secure your API with OAuth2 and JWT"
+            ]
+        },
+        {
+            "name": "SQLModel Docs",
+            "desc": "SQLAlchemy + Pydantic for FastAPI",
+            "url": "https://sqlmodel.tiangolo.com/",
+            "category": "Database",
+            "stage": "intermediate",
+            "learnings": [
+                "Define database models with Python type hints",
+                "Perform CRUD operations with async support",
+                "Leverage relationships and migrations with Alembic"
+            ]
+        },
+        {
+            "name": "Starlette Docs",
+            "desc": "ASGI toolkit FastAPI is built on",
+            "url": "https://www.starlette.io/",
+            "category": "Backend",
+            "stage": "advanced",
+            "learnings": [
+                "Understand the underlying ASGI framework",
+                "Build custom middleware and route handling",
+                "Explore WebSocket and background task support"
+            ]
+        },
+        {
+            "name": "HTTPie",
+            "desc": "CLI HTTP client for API exploration",
+            "url": "https://httpie.io/",
+            "category": "Tooling",
+            "stage": "beginner",
+            "learnings": [
+                "Quickly test APIs with a user‑friendly command‑line tool",
+                "Inspect request/response headers and bodies",
+                "Automate API testing in scripts"
+            ]
+        },
+        {
+            "name": "BeautifulSoup Docs",
+            "desc": "HTML/XML parsing library",
+            "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/",
+            "category": "Scraping",
+            "stage": "beginner",
+            "learnings": [
+                "Parse and navigate HTML/XML trees with ease",
+                "Use CSS selectors and find() methods to extract data",
+                "Handle malformed markup and character encodings",
+                "Combine with requests for full scraping pipelines"
+            ]
+        },
+        {
+            "name": "Selenium Docs",
+            "desc": "Browser automation",
+            "url": "https://www.selenium.dev/documentation/",
+            "category": "Automation",
+            "stage": "intermediate",
+            "learnings": [
+                "Automate real browser interactions (clicks, forms, navigation)",
+                "Implement explicit and implicit waits for dynamic content",
+                "Handle iframes, pop‑ups, and authentication flows",
+                "Run headless for CI/CD and deploy‑friendly scraping"
+            ]
+        },
+        {
+            "name": "Playwright for Python",
+            "desc": "Modern browser automation (better than Selenium)",
+            "url": "https://playwright.dev/python/",
+            "category": "Automation",
+            "stage": "intermediate",
+            "learnings": [
+                "Automate Chrome, Firefox, and WebKit with a single API",
+                "Take screenshots, generate PDFs, and intercept network requests",
+                "Write reliable tests with auto‑waiting and selectors"
+            ]
+        },
+        {
+            "name": "Scrapy Docs",
+            "desc": "Full‑scale scraping framework",
+            "url": "https://docs.scrapy.org/",
+            "category": "Scraping",
+            "stage": "advanced",
+            "learnings": [
+                "Build large‑scale web crawlers with built‑in concurrency",
+                "Use pipelines for data cleaning and storage",
+                "Deploy and schedule spiders for production scraping"
+            ]
+        },
+        {
+            "name": "scikit‑learn Docs",
+            "desc": "Machine learning in Python",
+            "url": "https://scikit-learn.org/stable/",
+            "category": "ML",
+            "stage": "intermediate",
+            "learnings": [
+                "Build regression, classification, and clustering models",
+                "Master cross‑validation, hyperparameter tuning (GridSearchCV)",
+                "Understand feature engineering and pipeline composition",
+                "Evaluate models with precision, recall, ROC curves"
+            ]
+        },
+        {
+            "name": "pandas Docs",
+            "desc": "Data analysis library",
+            "url": "https://pandas.pydata.org/docs/",
+            "category": "Data",
+            "stage": "intermediate",
+            "learnings": [
+                "Manipulate Series and DataFrames with loc, iloc, groupby",
+                "Handle missing data, merging, and reshaping",
+                "Perform time series operations and rolling windows",
+                "Read/write from CSV, Excel, SQL, and Parquet"
+            ]
+        },
+        {
+            "name": "NumPy Docs",
+            "desc": "Numerical computing foundation",
+            "url": "https://numpy.org/doc/stable/",
+            "category": "Data",
+            "stage": "beginner",
+            "learnings": [
+                "Understand n‑dimensional arrays and broadcasting",
+                "Perform vectorised operations for speed",
+                "Use linear algebra, random number generation, and FFT"
+            ]
+        },
+        {
+            "name": "Hugging Face Docs",
+            "desc": "Models & datasets hub",
+            "url": "https://huggingface.co/docs",
+            "category": "ML",
+            "stage": "advanced",
+            "learnings": [
+                "Load and fine‑tune state‑of‑the‑art transformers",
+                "Use the Datasets library for efficient data loading",
+                "Deploy models with the Inference API and endpoints",
+                "Evaluate LLMs with the Evaluate library"
+            ]
+        },
+        {
+            "name": "Weights & Biases",
+            "desc": "Experiment tracking for production ML",
+            "url": "https://docs.wandb.ai/",
+            "category": "MLOps",
+            "stage": "advanced",
+            "learnings": [
+                "Log metrics, hyperparameters, and model checkpoints",
+                "Visualise training runs and compare experiments",
+                "Monitor model performance in production"
+            ]
+        },
+        {
+            "name": "MLflow",
+            "desc": "ML lifecycle – tracking, registry, deployment",
+            "url": "https://mlflow.org/docs/latest/index.html",
+            "category": "MLOps",
+            "stage": "advanced",
+            "learnings": [
+                "Track experiments and package models in a standard format",
+                "Manage model versions and transition stages (staging/production)",
+                "Deploy models as REST endpoints or batch jobs"
+            ]
+        },
+        {
+            "name": "Mode SQL Tutorial",
+            "desc": "Best SQL learning resource",
+            "url": "https://mode.com/sql-tutorial/",
+            "category": "Data",
+            "stage": "beginner",
+            "learnings": [
+                "Master SELECT, JOIN, GROUP BY, and window functions",
+                "Write subqueries and CTEs for complex analysis",
+                "Understand query performance and indexing"
+            ]
+        },
+        {
+            "name": "Evan Miller — A/B Testing",
+            "desc": "How not to run an A/B test",
+            "url": "https://www.evanmiller.org/how-not-to-run-an-ab-test.html",
+            "category": "Analytics",
+            "stage": "intermediate",
+            "learnings": [
+                "Avoid common pitfalls in online controlled experiments",
+                "Calculate proper sample size and avoid peeking",
+                "Interpret p‑values and confidence intervals correctly"
+            ]
+        },
+        {
+            "name": "Optimizely A/B Testing Guide",
+            "desc": "Practical experimentation",
+            "url": "https://www.optimizely.com/optimization-glossary/ab-testing/",
+            "category": "Analytics",
+            "stage": "beginner",
+            "learnings": [
+                "Learn the fundamentals of A/B testing",
+                "Design experiments with clear hypotheses and success metrics",
+                "Analyse results and make data‑driven decisions"
+            ]
+        },
+        {
+            "name": "NIST Statistical Handbook",
+            "desc": "Stats for practitioners",
+            "url": "https://www.itl.nist.gov/div898/handbook/",
+            "category": "Analytics",
+            "stage": "advanced",
+            "learnings": [
+                "Deep dive into statistical methods for engineering and science",
+                "Understand control charts, design of experiments, and regression",
+                "Apply robust statistical techniques in practice"
+            ]
+        },
+        {
+            "name": "Docker Docs",
+            "desc": "Containerization",
+            "url": "https://docs.docker.com/",
+            "category": "DevOps",
+            "stage": "intermediate",
+            "learnings": [
+                "Containerise applications with Dockerfiles",
+                "Manage multi‑container apps with Docker Compose",
+                "Optimise image sizes and layers for faster builds",
+                "Deploy containers to any cloud or on‑premise"
+            ]
+        },
+        {
+            "name": "GitHub Actions Docs",
+            "desc": "CI/CD automation",
+            "url": "https://docs.github.com/en/actions",
+            "category": "DevOps",
+            "stage": "intermediate",
+            "learnings": [
+                "Automate testing, building, and deployment pipelines",
+                "Use matrix strategies for multi‑platform testing",
+                "Secure workflows with secrets and environment protection"
+            ]
+        },
+        {
+            "name": "Render Docs",
+            "desc": "Cloud deployment platform",
+            "url": "https://render.com/docs",
+            "category": "DevOps",
+            "stage": "beginner",
+            "learnings": [
+                "Deploy FastAPI, Django, and static sites in minutes",
+                "Set up environment variables and secrets securely",
+                "Configure health checks and auto‑deploy from Git",
+                "Scale with automatic load balancing and CDN"
+            ]
+        },
+        {
+            "name": "Twelve‑Factor App",
+            "desc": "Modern app principles",
+            "url": "https://12factor.net/",
+            "category": "DevOps",
+            "stage": "advanced",
+            "learnings": [
+                "Build scalable, maintainable cloud‑native applications",
+                "Decouple code from infrastructure and environment",
+                "Apply best practices for configuration, logging, and processes"
+            ]
+        },
+        {
+            "name": "TestDriven.io FastAPI Course",
+            "desc": "Production‑focused FastAPI + testing",
+            "url": "https://testdriven.io/courses/tdd-fastapi/",
+            "category": "Courses",
+            "stage": "intermediate",
+            "learnings": [
+                "Build a production‑ready FastAPI app with TDD",
+                "Write comprehensive tests for routes, services, and databases",
+                "Implement authentication, async, and deployment"
+            ]
+        },
+        {
+            "name": "Full Stack Python",
+            "desc": "End‑to‑end Python learning",
+            "url": "https://www.fullstackpython.com/",
+            "category": "Courses",
+            "stage": "beginner",
+            "learnings": [
+                "Learn Python from the ground up with real‑world projects",
+                "Understand web frameworks, databases, and APIs",
+                "Explore deployment and devops for Python apps"
+            ]
+        },
+        {
+            "name": "Kaggle Learn",
+            "desc": "Short, interactive ML courses",
+            "url": "https://www.kaggle.com/learn",
+            "category": "Courses",
+            "stage": "beginner",
+            "learnings": [
+                "Get hands‑on with Python, pandas, and scikit‑learn",
+                "Work through real‑world datasets and notebooks",
+                "Participate in competitions to test your skills"
+            ]
+        },
+        {
+            "name": "DataCamp",
+            "desc": "Data science interactive paths",
+            "url": "https://www.datacamp.com/",
+            "category": "Courses",
+            "stage": "beginner",
+            "learnings": [
+                "Follow structured learning tracks in data science",
+                "Practice with in‑browser coding exercises",
+                "Earn certificates and build a portfolio"
+            ]
+        },
+        {
+            "name": "O'Reilly Learning",
+            "desc": "Books, videos, sandboxes (paid)",
+            "url": "https://www.oreilly.com/online-learning/",
+            "category": "Courses",
+            "stage": "advanced",
+            "learnings": [
+                "Access a library of expert books and video courses",
+                "Use interactive sandboxes to try new technologies",
+                "Stay current with live training and conferences"
+            ]
+        },
+        {
+            "name": "PyCon Talks (YouTube)",
+            "desc": "Conference talks from the best",
+            "url": "https://www.youtube.com/@PyCon2019",
+            "category": "Community",
+            "stage": "beginner",
+            "learnings": [
+                "Watch talks from Python experts and core developers",
+                "Learn about new features, best practices, and case studies",
+                "Stay inspired by the Python community"
+            ]
+        },
+        {
+            "name": "Talk Python to Me",
+            "desc": "Weekly Python podcast",
+            "url": "https://talkpython.fm/",
+            "category": "Community",
+            "stage": "intermediate",
+            "learnings": [
+                "Listen to interviews with Python leaders and creators",
+                "Discover new libraries, tools, and career advice",
+                "Deepen your understanding of Python's ecosystem"
+            ]
+        },
+        {
+            "name": "Real Python Podcast",
+            "desc": "Practical Python discussions",
+            "url": "https://realpython.com/podcasts/rpp/",
+            "category": "Community",
+            "stage": "intermediate",
+            "learnings": [
+                "Hear about real‑world Python use cases",
+                "Get tips on workflow, testing, and performance",
+                "Stay up‑to‑date with the latest trends"
+            ]
+        },
+        {
+            "name": "Hacker News",
+            "desc": "Tech news & discussion",
+            "url": "https://news.ycombinator.com/",
+            "category": "Community",
+            "stage": "beginner",
+            "learnings": [
+                "Follow top tech news and startup discussions",
+                "Participate in thoughtful technical conversations",
+                "Discover new tools, frameworks, and ideas"
+            ]
+        }
+    ],
+    "testimonials": [
+        {
+            "quote": "Rizwan rebuilt our data pipeline and the FastAPI layer on top of it in under three weeks. Nothing has gone down since, and the handoff docs meant our own team could pick it up immediately.",
+            "name": "Aditi Sharma",
+            "role": "Founder, early‑stage SaaS",
+            "project": "FastAPI backend + scraping pipeline",
+            "initials": "AS"
+        },
+        {
+            "quote": "We needed a forecasting model wrapped in an API our product team could actually call. He scoped it properly, flagged the data quality issues up front, and shipped something we still trust.",
+            "name": "Daniel Fischer",
+            "role": "Head of Product, retail analytics",
+            "project": "Forecasting model + FastAPI endpoint",
+            "initials": "DF"
+        },
+        {
+            "quote": "Clear communication throughout — staging links instead of status updates, like he says on the site. The scraper he built has survived two site redesigns without breaking.",
+            "name": "Priya Nandakumar",
+            "role": "Operations Lead, market research firm",
+            "project": "Automated data collection pipeline",
+            "initials": "PN"
+        }
+    ],
+    "ui": {
+        "hero": {
+            "title": "👋 I'm Rizwan",
+            "subtitle": "I build production systems and document everything I learn.",
+            "cta": "Explore the curriculum →",
+            "ctaLink": "#curriculum"
+        },
+        "primaryColor": "#6366f1",
+        "accentColor": "#f59e0b",
+        "darkMode": true
+    }
+}
