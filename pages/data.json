@@ -1,0 +1,1474 @@
+{
+    "fundamentals": [
+        {
+            "id": "variables",
+            "title": "Variables",
+            "concept": "Variables are containers for storing data values. In Python, you don't need to declare a type — it's dynamically inferred. Python's variables are references to objects in memory, not the objects themselves.",
+            "analogy": "Think of variables as labeled boxes where you can store different items. You can change what's inside the box anytime, and the label stays the same. The box itself doesn't care what's inside — it just holds a reference to the object.",
+            "syntax": "variable_name = value",
+            "example": "name = \"Alice\"\nage = 25\nheight = 5.7\nis_student = True\n\n# Multiple assignment\nx, y, z = 1, 2, 3\n\n# Chained assignment\na = b = c = 0\n\nprint(name, age, height, is_student)",
+            "output": "Alice 25 5.7 True",
+            "dryRun": "1. \"Alice\" is stored in memory, name references it\n2. 25 is stored, age references it\n3. 5.7 is stored, height references it\n4. True is stored, is_student references it\n5. Multiple assignment: x=1, y=2, z=3\n6. Chained assignment: a=b=c=0\n7. All values are printed",
+            "timeComplexity": "O(1) - assignment is constant time",
+            "spaceComplexity": "O(1) - each variable uses a fixed amount of memory for the reference",
+            "interviewQuestions": [
+                "What is dynamic typing in Python and how does it differ from static typing?",
+                "How does Python manage memory for variables? Explain reference counting and garbage collection.",
+                "What is the difference between mutable and immutable objects in Python?"
+            ],
+            "practice": "Create variables for your name, age, city, profession, and a list of hobbies. Print them in a formatted sentence using f-strings.",
+            "commonMistakes": "Using reserved keywords as variable names (e.g., 'class', 'def', 'if'). Forgetting that variable names are case-sensitive. Confusing assignment (=) with comparison (==).",
+            "bestPractices": "Use descriptive names in snake_case. Avoid single-letter names except for loops or mathematical expressions. Use constants in UPPER_CASE. Use type hints for better code readability.",
+            "challenge": "Swap the values of two variables without using a temporary variable. Then, swap three variables using tuple unpacking.",
+            "summary": "Variables store references to data in memory. Python is dynamically typed, so you can reassign any type. Understanding references is crucial for understanding mutability.",
+            "revision": "Variables → containers for references; dynamic typing; snake_case naming; immutable vs mutable."
+        },
+        {
+            "id": "data-types",
+            "title": "Data Types",
+            "concept": "Python has several built-in data types including integers, floats, strings, booleans, lists, tuples, dictionaries, sets, and NoneType. Understanding these types is fundamental to writing efficient Python code.",
+            "analogy": "Different containers for different kinds of items: boxes for numbers, jars for text, folders for collections, and special containers for immutable data.",
+            "syntax": "# Integer\nage = 25\n# Float\nprice = 19.99\n# String\nname = \"Python\"\n# Boolean\nis_valid = True\n# List (mutable, ordered)\nfruits = [\"apple\", \"banana\", \"cherry\"]\n# Tuple (immutable, ordered)\ncolors = (\"red\", \"green\", \"blue\")\n# Dictionary (mutable, key-value)\nperson = {\"name\": \"Alice\", \"age\": 30}\n# Set (mutable, unordered, unique)\nunique_numbers = {1, 2, 3, 4, 5}\n# NoneType\nnothing = None",
+            "example": "age = 25\nprice = 19.99\nname = \"Python\"\nis_valid = True\nfruits = [\"apple\", \"banana\", \"cherry\"]\n\nprint(type(age), type(name), type(fruits), type(nothing))",
+            "output": "<class 'int'> <class 'str'> <class 'list'> <class 'NoneType'>",
+            "dryRun": "1. Create integer age=25\n2. Create string name=\"Python\"\n3. Create list fruits\n4. Print types of each using type() function",
+            "timeComplexity": "O(1) - type checking is constant time",
+            "spaceComplexity": "O(1) - each variable uses a fixed amount of memory",
+            "interviewQuestions": [
+                "What are the different data types in Python and how are they classified (mutable vs immutable)?",
+                "What is the difference between a list and a tuple? When would you use each?",
+                "How does Python handle type conversion? Explain implicit and explicit conversion."
+            ],
+            "practice": "Create variables of each data type and print their types using type(). Then, try to convert between types using int(), float(), str(), list(), tuple(), set(), and dict().",
+            "commonMistakes": "Forgetting that integers and floats are different types. Using mutable types as dictionary keys (keys must be immutable). Confusing list and tuple syntax.",
+            "bestPractices": "Use type hints for better code clarity. Choose the right data type for your use case (e.g., tuple for immutable collections, set for membership testing). Use isinstance() for type checking.",
+            "challenge": "Create a program that converts a string containing numbers into a list of integers, then into a tuple, then into a set, then back to a list. Track the changes in order and duplicates.",
+            "summary": "Python has rich built-in data types for different purposes. Understanding the difference between mutable and immutable types is crucial for writing efficient code.",
+            "revision": "Data types: int, float, str, bool, list, tuple, dict, set, NoneType. Mutable: list, dict, set. Immutable: int, float, str, tuple."
+        },
+        {
+            "id": "operators",
+            "title": "Operators",
+            "concept": "Operators perform operations on variables and values. Python includes arithmetic, comparison, logical, assignment, identity, membership, and bitwise operators. Understanding operator precedence is essential for writing correct expressions.",
+            "analogy": "Like mathematical symbols (+, -, ×, ÷) but with more functions for programming — including comparison, logic, and bit-level operations.",
+            "syntax": "# Arithmetic\n5 + 3  # Addition\n5 - 3  # Subtraction\n5 * 3  # Multiplication\n5 / 3  # Division (returns float)\n5 % 3  # Modulus (remainder)\n5 ** 3 # Exponentiation\n5 // 3 # Floor division\n\n# Comparison\n5 == 3  # Equal to\n5 != 3  # Not equal to\n5 > 3   # Greater than\n5 < 3   # Less than\n5 >= 3  # Greater than or equal to\n5 <= 3  # Less than or equal to\n\n# Logical\nTrue and False  # AND (short-circuits)\nTrue or False   # OR (short-circuits)\nnot True        # NOT\n\n# Identity\na is b          # Same object\n\n# Membership\n2 in [1, 2, 3]  # Contains\n\n# Assignment\nx = 10          # Simple assignment\nx += 5          # Add and assign",
+            "example": "x = 10\ny = 3\nprint(x + y)   # Addition\nprint(x - y)   # Subtraction\nprint(x * y)   # Multiplication\nprint(x / y)   # Division (float)\nprint(x % y)   # Modulus\nprint(x ** y)  # Exponentiation\nprint(x // y)  # Floor division\nprint(x == y)  # Comparison\nprint(x > y and x < 20) # Logical\nprint(x is not y)       # Identity\nprint(5 in [1, 2, 3, 4, 5]) # Membership",
+            "output": "13\n7\n30\n3.3333333333333335\n1\n1000\n3\nFalse\nTrue\nTrue\nTrue",
+            "dryRun": "1. x=10, y=3\n2. 10+3=13, 10-3=7, 10*3=30, 10/3=3.33, 10%3=1, 10**3=1000, 10//3=3\n3. 10==3? False\n4. 10>3 and 10<20? True\n5. x is not y? True (different objects)\n6. 5 in list? True",
+            "timeComplexity": "O(1) - all basic operations are constant time",
+            "spaceComplexity": "O(1) - no extra space used",
+            "interviewQuestions": [
+                "What is the difference between / and // in Python? When would you use each?",
+                "How do logical operators work in Python? Explain short-circuit evaluation.",
+                "What is operator precedence in Python? Give examples."
+            ],
+            "practice": "Write a program that performs all arithmetic operations on two numbers. Then, write a program that uses comparison operators to determine the larger number.",
+            "commonMistakes": "Using = instead of == for comparison. Forgetting operator precedence (use parentheses for clarity). Using == instead of is for object identity.",
+            "bestPractices": "Use parentheses for clarity in complex expressions. Use += for increment operations. Use is for None checks, == for value comparison.",
+            "challenge": "Write a program that checks if a number is even and divisible by 3, and also checks if it's not equal to 0. Use all three logical operators.",
+            "summary": "Operators are essential for performing operations on data. Python has a rich set of operators with well-defined precedence. Understanding short-circuit evaluation is important for efficiency.",
+            "revision": "Operators: arithmetic, comparison, logical, assignment, identity (is), membership (in), bitwise. Precedence: (), **, * / // %, + -, comparisons, not, and, or."
+        },
+        {
+            "id": "input-output",
+            "title": "Input/Output",
+            "concept": "Input/Output (I/O) operations allow programs to interact with users and files. input() reads user input as a string, print() displays output. Python also supports formatted output using f-strings, format(), and % formatting.",
+            "analogy": "Like asking a question and getting an answer, or showing someone information on a screen. Input is like a conversation, output is like presenting results.",
+            "syntax": "name = input(\"Enter your name: \")\nprint(\"Hello, \" + name + \"!\")",
+            "example": "name = input(\"What is your name? \")\nage = int(input(\"How old are you? \"))\ncity = input(\"Where do you live? \")\n\n# Using f-string (recommended)\nprint(f\"Hello {name}! You are {age} years old and live in {city}.\")\n\n# Using format()\nprint(\"Hello {}! You are {} years old and live in {}.\".format(name, age, city))\n\n# Using % formatting (older style)\nprint(\"Hello %s! You are %d years old and live in %s.\" % (name, age, city))",
+            "output": "What is your name? Alice\nHow old are you? 25\nWhere do you live? New York\nHello Alice! You are 25 years old and live in New York.",
+            "dryRun": "1. Prompt for name → user enters \"Alice\"\n2. Prompt for age → user enters \"25\"\n3. Convert age to int\n4. Prompt for city → user enters \"New York\"\n5. Print formatted string using f-string",
+            "timeComplexity": "O(n) where n is the input size",
+            "spaceComplexity": "O(n) - stores the input string",
+            "interviewQuestions": [
+                "How does input() work in Python? What does it return?",
+                "What is the difference between print() and sys.stdout.write()?",
+                "What are the different ways to format strings in Python? Which is preferred and why?"
+            ],
+            "practice": "Create a program that asks for user's favorite color, food, and hobby, then prints a message combining all three.",
+            "commonMistakes": "Forgetting to convert input to the correct type (e.g., int, float). Not handling empty input or invalid input. Using concatenation instead of f-strings.",
+            "bestPractices": "Use f-strings for formatted output (Python 3.6+). Always validate user input using try/except. Use descriptive prompts.",
+            "challenge": "Create a simple calculator that takes two numbers and an operator from user input. Handle division by zero and invalid operators gracefully.",
+            "summary": "input() and print() are the basic I/O functions in Python. Always validate and convert input as needed. Use f-strings for modern, readable formatting.",
+            "revision": "input() reads strings, print() displays output; use type conversion for numbers; f-strings for formatting; validate input."
+        },
+        {
+            "id": "conditional-statements",
+            "title": "Conditional Statements",
+            "concept": "Conditional statements (if, elif, else) allow your program to make decisions based on conditions. Python also supports ternary operators (conditional expressions) for concise conditional assignments.",
+            "analogy": "Like choosing different paths in a road based on traffic signs. If it's raining, take an umbrella; else, enjoy the sun. Multiple conditions allow for complex decision trees.",
+            "syntax": "if condition:\n    # code to execute\nelif another_condition:\n    # code to execute\nelse:\n    # code to execute\n\n# Ternary operator\nresult = value_if_true if condition else value_if_false",
+            "example": "age = 18\nscore = 85\n\nif age < 13:\n    print(\"Child\")\nelif age < 18:\n    print(\"Teenager\")\nelif age < 65:\n    print(\"Adult\")\nelse:\n    print(\"Senior Citizen\")\n\n# Nested conditions\nif age >= 18:\n    if score >= 90:\n        grade = \"A\"\n    elif score >= 80:\n        grade = \"B\"\n    else:\n        grade = \"C\"\n    print(f\"Grade: {grade}\")\n\n# Ternary operator\nstatus = \"Adult\" if age >= 18 else \"Minor\"\nprint(f\"Status: {status}\")",
+            "output": "Adult\nGrade: B\nStatus: Adult",
+            "dryRun": "1. age=18, score=85\n2. 18 < 13? No → 18 < 18? No → 18 < 65? Yes → print \"Adult\"\n3. age >= 18? Yes → score >= 90? No → score >= 80? Yes → grade=\"B\"\n4. Ternary: age >= 18 → True → status=\"Adult\"",
+            "timeComplexity": "O(1) - constant time for conditional checks",
+            "spaceComplexity": "O(1) - no extra space used",
+            "interviewQuestions": [
+                "What is the difference between if-elif-else and switch statements? How does Python handle multiple conditions?",
+                "How does Python handle truth values? What values are considered falsy?",
+                "What is the ternary operator and when would you use it?"
+            ],
+            "practice": "Write a program that checks if a number is positive, negative, or zero. Then, write a program that checks if a year is a leap year.",
+            "commonMistakes": "Using assignment (=) instead of equality (==). Forgetting colons at the end of condition lines. Incorrect indentation.",
+            "bestPractices": "Use elif for multiple conditions. Keep conditions simple and readable. Use ternary operators for simple conditional assignments only.",
+            "challenge": "Create a grade calculator based on percentage scores. Include +/- grades (e.g., A+, A, A-) and handle edge cases.",
+            "summary": "Conditional statements control program flow. They evaluate Boolean expressions to determine which code to execute. Python supports nested conditions and ternary operators.",
+            "revision": "if/elif/else → decision making; use comparison operators in conditions; ternary operator for simple assignments; truthiness."
+        },
+        {
+            "id": "loops",
+            "title": "Loops",
+            "concept": "Loops (for and while) allow you to execute a block of code repeatedly. for loops iterate over sequences, while loops continue until a condition is false. Python also supports loop control statements: break, continue, and else.",
+            "analogy": "Like walking around a track: for loop is like walking a set number of laps, while loop is like walking until you're tired. Break is like stopping early, continue is like skipping a lap.",
+            "syntax": "# For loop\nfor item in iterable:\n    # code to execute\n\n# While loop\nwhile condition:\n    # code to execute\n\n# Loop control\nbreak    # exit loop\ncontinue # skip current iteration\nelse:    # executes when loop completes normally",
+            "example": "print(\"For loop:\")\nfor i in range(5):\n    print(i, end=\" \")\n\nprint(\"\\nWhile loop:\")\ncount = 0\nwhile count < 5:\n    print(count, end=\" \")\n    count += 1\n\nprint(\"\\nBreak example:\")\nfor i in range(10):\n    if i == 5:\n        break\n    print(i, end=\" \")\n\nprint(\"\\nContinue example:\")\nfor i in range(10):\n    if i % 2 == 0:\n        continue\n    print(i, end=\" \")\n\nprint(\"\\nElse with loop:\")\nfor i in range(5):\n    print(i, end=\" \")\nelse:\n    print(\" - Loop completed normally\")",
+            "output": "For loop:\n0 1 2 3 4\nWhile loop:\n0 1 2 3 4\nBreak example:\n0 1 2 3 4\nContinue example:\n1 3 5 7 9\nElse with loop:\n0 1 2 3 4 - Loop completed normally",
+            "dryRun": "1. For loop: i=0→print0, i=1→print1, ... i=4→print4\n2. While loop: count=0→print0, count=1→print1, ... count=4→print4, count=5→stop\n3. Break: i=0→print0, ... i=4→print4, i=5→break\n4. Continue: i=0→continue, i=1→print1, i=2→continue, ...\n5. Else: loop completes normally → print message",
+            "timeComplexity": "O(n) - loop runs n times",
+            "spaceComplexity": "O(1) - constant extra space",
+            "interviewQuestions": [
+                "What is the difference between for and while loops? When would you use each?",
+                "How do you break out of a loop in Python? What are break, continue, and else in loops?",
+                "What is the difference between range() and xrange() in Python 2? How does range() work in Python 3?"
+            ],
+            "practice": "Write a program that prints all even numbers from 1 to 20 using both for and while loops. Then, write a program that finds the first number divisible by 7 between 1 and 100.",
+            "commonMistakes": "Infinite loops (while True without break). Modifying a list while iterating over it (use list copy or while loop). Off-by-one errors in range().",
+            "bestPractices": "Use for loops for known iterations, while loops for unknown. Use break and continue wisely. Use enumerate() when you need both index and value.",
+            "challenge": "Write a program that generates the first n prime numbers using nested loops. Use the sieve of Eratosthenes for efficiency.",
+            "summary": "Loops are essential for repetitive tasks. Choose the right loop for your use case. Use break, continue, and else to control loop behavior.",
+            "revision": "for: iterates over sequences; while: runs until condition is false; break exits; continue skips; else runs on normal completion."
+        },
+        {
+            "id": "functions",
+            "title": "Functions",
+            "concept": "Functions are reusable blocks of code that perform a specific task. They help organize and modularize code. Functions can take parameters, return values, and have default arguments, keyword arguments, and variable-length arguments.",
+            "analogy": "Like a recipe — you follow the steps to get a result. You can use the same recipe multiple times with different ingredients. You can also adjust the recipe with optional ingredients (default parameters).",
+            "syntax": "def function_name(parameters):\n    # code block\n    return value\n\n# Default parameters\ndef func(param=default_value):\n    pass\n\n# *args (variable positional arguments)\ndef func(*args):\n    pass\n\n# **kwargs (variable keyword arguments)\ndef func(**kwargs):\n    pass\n\n# Type hints\ndef func(param: int) -> str:\n    return str(param)",
+            "example": "def add(a, b):\n    \"\"\"Add two numbers and return the result.\"\"\"\n    return a + b\n\ndef greet(name, greeting=\"Hello\"):\n    return f\"{greeting}, {name}!\"\n\ndef sum_all(*args):\n    return sum(args)\n\ndef print_info(**kwargs):\n    for key, value in kwargs.items():\n        print(f\"{key}: {value}\")\n\ndef divide(a: int, b: int) -> float:\n    \"\"\"Divide a by b with type hints.\"\"\"\n    return a / b\n\nprint(add(5, 3))\nprint(greet(\"Alice\"))\nprint(greet(\"Bob\", \"Hi\"))\nprint(sum_all(1, 2, 3, 4, 5))\nprint_info(name=\"Alice\", age=25, city=\"NYC\")",
+            "output": "8\nHello, Alice!\nHi, Bob!\n15\nname: Alice\nage: 25\ncity: NYC",
+            "dryRun": "1. Define add(a,b) → returns a+b\n2. Define greet(name, greeting=\"Hello\") → returns f\"{greeting}, {name}!\"\n3. Define sum_all(*args) → sums all arguments\n4. Define print_info(**kwargs) → prints key-value pairs\n5. Define divide with type hints → returns float\n6. Call each function with different arguments",
+            "timeComplexity": "O(1) for simple operations; depends on the body",
+            "spaceComplexity": "O(1) for primitive values; O(n) for data structures passed",
+            "interviewQuestions": [
+                "What are the different types of arguments in Python? Explain positional, keyword, default, *args, and **kwargs.",
+                "What is the difference between returning a value and printing it?",
+                "What is the difference between pass, continue, and return?",
+                "What are type hints and why are they useful?"
+            ],
+            "practice": "Write a function that takes a list and returns the sum of all even numbers. Write another function that takes a string and returns its word count.",
+            "commonMistakes": "Forgetting to return a value (returns None). Modifying mutable default arguments. Using mutable objects as default parameters.",
+            "bestPractices": "Use type hints for clarity. Keep functions small and focused on one task. Use docstrings to document functions. Use default arguments carefully.",
+            "challenge": "Write a decorator that measures and prints the execution time of a function. Then, implement a memoization decorator.",
+            "summary": "Functions are reusable, organized code blocks. They take parameters and can return values. Understanding argument types and scope is crucial.",
+            "revision": "Functions → def name(params):; return; docstrings; type hints; *args, **kwargs; default parameters."
+        },
+        {
+            "id": "recursion",
+            "title": "Recursion",
+            "concept": "Recursion is a technique where a function calls itself to solve a problem by breaking it down into smaller subproblems. Every recursive function must have a base case to prevent infinite recursion.",
+            "analogy": "Like Russian nesting dolls — each doll contains a smaller version of itself until you reach the smallest one. Like a mirror reflecting another mirror, but with a stopping point.",
+            "syntax": "def recursive_function(n):\n    if base_case:\n        return base_value\n    return recursive_function(n-1) + ...",
+            "example": "def factorial(n):\n    # Base case\n    if n <= 1:\n        return 1\n    # Recursive case\n    return n * factorial(n-1)\n\ndef fibonacci(n):\n    # Base cases\n    if n <= 0:\n        return 0\n    if n == 1:\n        return 1\n    # Recursive case\n    return fibonacci(n-1) + fibonacci(n-2)\n\ndef power(base, exp):\n    if exp == 0:\n        return 1\n    if exp < 0:\n        return 1 / power(base, -exp)\n    return base * power(base, exp-1)\n\nprint(factorial(5))\nprint(fibonacci(10))\nprint(power(2, 5))",
+            "output": "120\n55\n32",
+            "dryRun": "factorial(5) → 5 * factorial(4) → 5*4*factorial(3) → ... → 5*4*3*2*1 = 120\nfibonacci(10) → fib(9)+fib(8) → ... → 55\npower(2,5) → 2*power(2,4) → ... → 32",
+            "timeComplexity": "O(n) for linear recursion; O(2^n) for naive Fibonacci",
+            "spaceComplexity": "O(n) - call stack depth is n",
+            "interviewQuestions": [
+                "What is the difference between recursion and iteration? When should you use each?",
+                "What is tail recursion? Does Python support it?",
+                "What is the maximum recursion depth in Python and how can you change it?"
+            ],
+            "practice": "Write a recursive function to compute the nth Fibonacci number. Then, implement it iteratively and compare performance.",
+            "commonMistakes": "Forgetting the base case → infinite recursion. Stack overflow for large inputs. Not using memoization for overlapping subproblems.",
+            "bestPractices": "Always define a base case. Consider iterative alternatives for deep recursion. Use memoization for overlapping subproblems.",
+            "challenge": "Implement a recursive binary search on a sorted list. Then, implement a recursive algorithm to generate all permutations of a string.",
+            "summary": "Recursion breaks problems into smaller instances. Must have a base case to terminate. Useful for tree/graph problems but can be inefficient for overlapping subproblems.",
+            "revision": "Recursion → function calls itself; base case required; stack memory; use for tree/graph problems; memoization for optimization."
+        },
+        {
+            "id": "strings",
+            "title": "Strings",
+            "concept": "Strings are immutable sequences of characters. Python provides many methods for string manipulation including formatting, searching, replacing, and splitting. Understanding string slicing and methods is crucial for text processing.",
+            "analogy": "Like a string of beads where each bead is a character. You can look at beads but can't change them directly — you can only create a new string with modifications.",
+            "syntax": "string = \"Hello, World!\"\n# Access characters\nstring[0]  # 'H'\nstring[-1] # '!'\n# Slicing\nstring[0:5]  # 'Hello'\nstring[7:]   # 'World!'\nstring[::-1] # Reverse string\n# Methods\nstring.lower()\nstring.upper()\nstring.strip()\nstring.split(\",\")\nstring.replace(\"World\", \"Python\")\nstring.find(\"World\")",
+            "example": "text = \"  Python Programming  \"\nprint(text.strip())\nprint(text.lower())\nprint(text.upper())\nprint(text.replace(\"Python\", \"Java\"))\nprint(text.split())\nprint(len(text))\n\n# Slicing examples\ns = \"Hello, World!\"\nprint(s[0:5])   # Hello\nprint(s[-6:])   # World!\nprint(s[::-1])  # !dlroW ,olleH\n\n# Joining\nwords = [\"Python\", \"is\", \"awesome\"]\nprint(\" \".join(words))\n\n# Formatting\nname = \"Alice\"\nage = 25\nprint(f\"Name: {name}, Age: {age}\")",
+            "output": "Python Programming\n  python programming  \n  PYTHON PROGRAMMING  \n  Java Programming  \n['Python', 'Programming']\n23\nHello\nWorld!\n!dlroW ,olleH\nPython is awesome\nName: Alice, Age: 25",
+            "dryRun": "1. text=\"  Python Programming  \"\n2. strip() removes spaces → \"Python Programming\"\n3. lower() → \"  python programming  \"\n4. upper() → \"  PYTHON PROGRAMMING  \"\n5. replace(\"Python\",\"Java\") → \"  Java Programming  \"\n6. split() → [\"Python\", \"Programming\"]\n7. len() → 23\n8. Slicing: s[0:5]=\"Hello\", s[-6:]=\"World!\", s[::-1] reverses\n9. join() combines list with spaces\n10. f-string for formatting",
+            "timeComplexity": "Most operations are O(n) where n is the string length",
+            "spaceComplexity": "O(n) - creates new strings for modifications",
+            "interviewQuestions": [
+                "Why are strings immutable in Python? What are the benefits and drawbacks?",
+                "What is string slicing and how does it work?",
+                "What is the difference between find() and index()?",
+                "How would you efficiently concatenate many strings?"
+            ],
+            "practice": "Write a program that checks if a string is a palindrome. Then, write a program that counts the frequency of each character in a string.",
+            "commonMistakes": "Forgetting strings are immutable. Using wrong index values or negative indices incorrectly. Using concatenation in loops (use join()).",
+            "bestPractices": "Use f-strings for formatting. Use .join() for concatenating many strings. Use slicing for substring operations. Use strip() for cleaning whitespace.",
+            "challenge": "Find the longest palindrome substring in a given string. Then, implement the KMP string matching algorithm.",
+            "summary": "Strings are immutable sequences with many useful methods. Understanding string operations is crucial for text processing. Use efficient methods for large string operations.",
+            "revision": "Strings → immutable; slicing; methods: strip, split, join, replace, lower/upper; f-strings; concatenation."
+        },
+        {
+            "id": "lists",
+            "title": "Lists",
+            "concept": "Lists are ordered, mutable collections that can hold items of different types. They support indexing, slicing, and various methods. Lists are the most versatile data structure in Python.",
+            "analogy": "Like a shopping list — you can add, remove, or change items, and the order matters. You can also sort, reverse, or create new lists based on the original.",
+            "syntax": "my_list = [item1, item2, ...]\n# Accessing\nmy_list[0]  # first item\nmy_list[-1] # last item\nmy_list[0:3] # slicing\n# Methods\nmy_list.append(item)\nmy_list.insert(index, item)\nmy_list.pop(index)\nmy_list.remove(item)\nmy_list.sort()\nmy_list.reverse()\n# List comprehension\n[x**2 for x in range(5)]",
+            "example": "fruits = [\"apple\", \"banana\", \"cherry\"]\nfruits.append(\"date\")\nprint(fruits[0])\nfruits[1] = \"blueberry\"\nprint(fruits)\n\n# List comprehension\nsquares = [x**2 for x in range(5)]\nprint(squares)\n\n# Nested lists\nmatrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\nprint(matrix[1][2])  # 6\n\n# Sorting\nnumbers = [5, 2, 8, 1, 9]\nnumbers.sort()\nprint(numbers)\n\n# Filtering\nevens = [x for x in range(10) if x % 2 == 0]\nprint(evens)",
+            "output": "apple\n['apple', 'blueberry', 'cherry', 'date']\n[0, 1, 4, 9, 16]\n6\n[1, 2, 5, 8, 9]\n[0, 2, 4, 6, 8]",
+            "dryRun": "1. Create list with 3 items\n2. Append \"date\" → list becomes [apple, banana, cherry, date]\n3. Print first item → \"apple\"\n4. Change index 1 to \"blueberry\"\n5. Print updated list\n6. List comprehension squares 0-4\n7. Nested list access matrix[1][2] = 6\n8. Sort numbers → [1,2,5,8,9]\n9. Filter evens using list comprehension",
+            "timeComplexity": "Access O(1), Append O(1) amortized, Insert/Delete O(n), Search O(n), Sort O(n log n)",
+            "spaceComplexity": "O(n) - grows with number of elements",
+            "interviewQuestions": [
+                "How are lists implemented in Python? What is the difference between list and array?",
+                "What is the difference between list and tuple? When would you use each?",
+                "What is list comprehension and when is it useful?",
+                "How would you remove duplicates from a list while preserving order?"
+            ],
+            "practice": "Create a list of your top 5 favorite movies. Add a new one, remove one, and print the list. Then, create a list of numbers and sort them.",
+            "commonMistakes": "Modifying a list while iterating over it (use list copy or while loop). Using = to copy instead of .copy() or slicing. Using list as default parameter.",
+            "bestPractices": "Use list comprehensions for clean creation. Prefer append() over insert() for speed. Use slicing for copying. Use enumerate() in loops.",
+            "challenge": "Write a function that removes duplicates from a list while preserving order. Then, implement a function that flattens a nested list.",
+            "summary": "Lists are versatile, mutable sequences. They support indexing, slicing, and various methods. List comprehensions provide a concise way to create lists.",
+            "revision": "Lists → ordered, mutable, heterogeneous; O(1) access; methods: append, pop, sort, reverse; list comprehensions."
+        },
+        {
+            "id": "tuples",
+            "title": "Tuples",
+            "concept": "Tuples are ordered, immutable collections that can hold items of different types. Once created, they cannot be modified. Tuples are faster and use less memory than lists.",
+            "analogy": "Like a sealed envelope — you can look at what's inside but can't change it once it's sealed. Like coordinates (x, y) that should not change.",
+            "syntax": "my_tuple = (item1, item2, ...)\n# Single element tuple (note the comma)\nsingle = (1,)\n# Without parentheses (tuple packing)\na = 1, 2, 3\n# Tuple unpacking\nx, y, z = (1, 2, 3)",
+            "example": "colors = (\"red\", \"green\", \"blue\")\nprint(colors[1])\n# colors[1] = \"yellow\"  # This would raise an error\nprint(len(colors))\n\n# Tuple unpacking\na, b, c = colors\nprint(a, b, c)\n\n# Tuple as dictionary key\ncoordinates = {(10, 20): \"Point A\", (30, 40): \"Point B\"}\nprint(coordinates[(10, 20)])\n\n# Tuple methods\nprint(colors.index(\"green\"))\nprint(colors.count(\"red\"))",
+            "output": "green\n3\nred green blue\nPoint A\n1\n1",
+            "dryRun": "1. Create tuple with 3 items\n2. Access index 1 → \"green\"\n3. len() → 3\n4. Unpack into variables a,b,c\n5. Print variables\n6. Use tuple as dictionary key\n7. Use index() and count() methods",
+            "timeComplexity": "Access O(1), no modification operations",
+            "spaceComplexity": "O(n) - stores n elements, less than list due to no overallocation",
+            "interviewQuestions": [
+                "Why use tuples instead of lists? What are the benefits?",
+                "What is tuple unpacking and how does it work?",
+                "How can you use tuples as dictionary keys?",
+                "What is the difference between (1) and (1,)?"
+            ],
+            "practice": "Create a tuple with your name, age, and city. Unpack it and print each value. Then, create a tuple of numbers and find the sum.",
+            "commonMistakes": "Trying to modify a tuple (TypeError). Forgetting the comma for single-element tuples (1,). Using tuple when list is needed.",
+            "bestPractices": "Use tuples for data that shouldn't change (constants, return values). Use tuple unpacking for multiple return values. Use tuples as dictionary keys.",
+            "challenge": "Write a function that returns a tuple with the min and max of a list. Then, implement a function that uses tuple unpacking to swap variables.",
+            "summary": "Tuples are immutable sequences. They are faster and use less memory than lists. Useful for data that shouldn't change and as dictionary keys.",
+            "revision": "Tuples → immutable, ordered; use parentheses; faster than lists; tuple unpacking; dictionary keys."
+        },
+        {
+            "id": "sets",
+            "title": "Sets",
+            "concept": "Sets are unordered collections of unique elements. They support mathematical operations like union, intersection, difference, and symmetric difference. Sets are optimized for membership testing.",
+            "analogy": "Like a bag of unique marbles — you can check if a marble is in the bag, but there are no duplicates. You can combine bags (union), find common marbles (intersection), or find marbles only in one bag (difference).",
+            "syntax": "my_set = {item1, item2, ...}\n# Creating from list\nmy_set = set([1, 2, 3])\n# Methods\nset.add(item)\nset.remove(item)\nset.discard(item)\nset.union(other_set)\nset.intersection(other_set)\nset.difference(other_set)\nset.symmetric_difference(other_set)\n# Set comprehensions\n{x**2 for x in range(5)}",
+            "example": "fruits = {\"apple\", \"banana\", \"cherry\"}\nfruits.add(\"date\")\nfruits.add(\"apple\")  # No change, already exists\nprint(fruits)\nprint(\"banana\" in fruits)\nprint(\"grape\" in fruits)\n\nset1 = {1, 2, 3, 4}\nset2 = {3, 4, 5, 6}\nprint(set1.union(set2))         # {1, 2, 3, 4, 5, 6}\nprint(set1.intersection(set2))  # {3, 4}\nprint(set1.difference(set2))    # {1, 2}\nprint(set1.symmetric_difference(set2))  # {1, 2, 5, 6}\n\n# Removing duplicates from list\nnumbers = [1, 2, 2, 3, 3, 4]\nunique = list(set(numbers))\nprint(unique)",
+            "output": "{'cherry', 'date', 'banana', 'apple'}\nTrue\nFalse\n{1, 2, 3, 4, 5, 6}\n{3, 4}\n{1, 2}\n{1, 2, 5, 6}\n[1, 2, 3, 4]",
+            "dryRun": "1. Create set with 3 items\n2. Add \"date\"\n3. Add \"apple\" again → no change\n4. Check membership\n5. Union → combine sets (unique elements)\n6. Intersection → common elements\n7. Difference → elements in set1 not in set2\n8. Symmetric difference → elements in either but not both\n9. Remove duplicates from list using set",
+            "timeComplexity": "Add/Remove/Check O(1) average, O(n) worst-case",
+            "spaceComplexity": "O(n) - stores n unique elements",
+            "interviewQuestions": [
+                "How are sets implemented in Python? What is the difference between set and frozenset?",
+                "What is the difference between a set and a list? When would you use each?",
+                "How would you find the intersection of three sets without using built-in methods?"
+            ],
+            "practice": "Create a set of numbers from 1 to 10. Remove even numbers and print the result. Then, find the union and intersection of two sets.",
+            "commonMistakes": "Forgetting that sets are unordered. Trying to access elements by index. Using mutable types as set elements.",
+            "bestPractices": "Use sets for membership testing. Use set operations for mathematical operations. Use frozenset for immutable sets.",
+            "challenge": "Find the intersection of three sets without using built-in methods. Then, implement a function that finds the symmetric difference of multiple sets.",
+            "summary": "Sets are unordered collections of unique elements. They support fast membership testing and mathematical operations. Useful for removing duplicates and set operations.",
+            "revision": "Sets → unordered, unique; methods: add, remove, union, intersection, difference, symmetric_difference; set comprehensions."
+        },
+        {
+            "id": "dictionaries",
+            "title": "Dictionaries",
+            "concept": "Dictionaries are unordered, mutable collections of key-value pairs. Keys must be unique and immutable (strings, numbers, tuples). Dictionaries are optimized for fast lookups.",
+            "analogy": "Like a real dictionary — you look up a word (key) to find its definition (value). Like a phone book where you look up a name to find a number.",
+            "syntax": "my_dict = {\"key\": \"value\", \"key2\": \"value2\"}\n# Creating from dict()\nmy_dict = dict(key=\"value\", key2=\"value2\")\n# Accessing\nmy_dict[\"key\"]\nmy_dict.get(\"key\", default)\n# Methods\nmy_dict.keys()\nmy_dict.values()\nmy_dict.items()\nmy_dict.update(other_dict)\nmy_dict.pop(\"key\")\n# Dictionary comprehension\n{x: x**2 for x in range(5)}",
+            "example": "person = {\"name\": \"Alice\", \"age\": 25, \"city\": \"NYC\"}\nprint(person[\"name\"])\nperson[\"age\"] = 26\nprint(person.get(\"country\", \"Unknown\"))\nprint(person.keys())\nprint(person.values())\nprint(person.items())\n\n# Merging dictionaries\ndict1 = {\"a\": 1, \"b\": 2}\ndict2 = {\"b\": 3, \"c\": 4}\ndict1.update(dict2)\nprint(dict1)\n\n# Dictionary comprehension\nsquares = {x: x**2 for x in range(5)}\nprint(squares)",
+            "output": "Alice\nUnknown\ndict_keys(['name', 'age', 'city'])\ndict_values(['Alice', 26, 'NYC'])\ndict_items([('name', 'Alice'), ('age', 26), ('city', 'NYC')])\n{'a': 1, 'b': 3, 'c': 4}\n{0: 0, 1: 1, 2: 4, 3: 9, 4: 16}",
+            "dryRun": "1. Create dict with 3 pairs\n2. Access \"name\" → \"Alice\"\n3. Update \"age\" to 26\n4. Get \"country\" with default → \"Unknown\"\n5. Get keys, values, items\n6. Merge dict2 into dict1 (overwrites 'b')\n7. Dictionary comprehension creates squares",
+            "timeComplexity": "Access/Insert/Delete O(1) average, O(n) worst-case",
+            "spaceComplexity": "O(n) - grows with number of key-value pairs",
+            "interviewQuestions": [
+                "How are dictionaries implemented in Python? Explain hash tables and collision resolution.",
+                "What makes a key hashable? What types can be used as dictionary keys?",
+                "What is the difference between dict.get() and dict[]?",
+                "How would you merge two dictionaries in Python?"
+            ],
+            "practice": "Create a dictionary to store student grades. Add, update, and delete entries. Then, create a dictionary comprehension that squares numbers.",
+            "commonMistakes": "Using mutable types as keys (list, dict). Forgetting that iteration order is insertion-ordered in Python 3.7+. Using .get() vs [] incorrectly.",
+            "bestPractices": "Use .get() to avoid KeyError. Use dict comprehensions for clean creation. Use defaultdict for default values. Use OrderedDict if order matters.",
+            "challenge": "Write a function that merges two dictionaries, with the second overriding the first. Then, implement a function that inverts a dictionary (swaps keys and values).",
+            "summary": "Dictionaries map keys to values. Fast lookups, flexible, and widely used. Keys must be immutable. Use .get() for safe access.",
+            "revision": "Dict → key-value pairs; O(1) average; keys immutable; .get() avoids errors; dict comprehensions; update() merges."
+        },
+        {
+            "id": "file-handling",
+            "title": "File Handling",
+            "concept": "File handling allows programs to read from and write to files on the filesystem. Python provides built-in functions and context managers for file operations. Understanding file modes and buffering is crucial.",
+            "analogy": "Like reading and writing in a notebook. You can write new content, read existing content, or add more content. The notebook can be opened, written to, read from, and closed.",
+            "syntax": "with open(filename, mode) as file:\n    # read/write operations\n\n# Modes:\n# 'r' - read (default)\n# 'w' - write (overwrites)\n# 'a' - append\n# 'x' - exclusive creation\n# 'r+' - read and write\n# 'b' - binary mode",
+            "example": "# Writing to a file\nwith open(\"example.txt\", \"w\") as f:\n    f.write(\"Hello, World!\\nSecond line.\")\n\n# Reading from a file\nwith open(\"example.txt\", \"r\") as f:\n    content = f.read()\n    print(content)\n\n# Appending to a file\nwith open(\"example.txt\", \"a\") as f:\n    f.write(\"\\nThird line.\")\n\n# Reading line by line\nwith open(\"example.txt\", \"r\") as f:\n    for line in f:\n        print(line.strip())\n\n# Binary files\nwith open(\"image.jpg\", \"rb\") as f:\n    data = f.read()",
+            "output": "Hello, World!\nSecond line.\nHello, World!\nSecond line.\nThird line.",
+            "dryRun": "1. Open file in write mode → write content\n2. Open file in read mode → read all content\n3. Print content\n4. Open file in append mode → add another line\n5. Read line by line using iteration\n6. Binary read for images",
+            "timeComplexity": "O(n) - where n is file size",
+            "spaceComplexity": "O(n) - when reading entire file",
+            "interviewQuestions": [
+                "What is the difference between read(), readline(), and readlines()?",
+                "How would you handle file not found errors?",
+                "What is the difference between 'w' and 'a' modes?",
+                "How would you read a large file efficiently?"
+            ],
+            "practice": "Write a program to count lines in a text file. Then, write a program that reads a CSV file and processes its data.",
+            "commonMistakes": "Forgetting to close the file (use with statement). Not handling exceptions. Using wrong file modes. Not using encoding properly.",
+            "bestPractices": "Always use with statement. Use try/except for error handling. Use appropriate encoding (utf-8). Use context managers for resources.",
+            "challenge": "Copy a file line by line without loading it all into memory. Then, implement a function that finds and replaces text in a file.",
+            "summary": "File handling is essential for persistent data storage. Always use with statements for proper resource management. Handle exceptions gracefully.",
+            "revision": "File handling → open(), read(), write(), with statement, modes: r, w, a, rb, wb; context managers; error handling."
+        },
+        {
+            "id": "exception-handling",
+            "title": "Exception Handling",
+            "concept": "Exception handling allows you to gracefully manage runtime errors using try, except, else, and finally blocks. It prevents the program from crashing and allows for proper error recovery.",
+            "analogy": "Like a safety net in a circus. You try a dangerous trick, and if you fall, the net catches you instead of hitting the ground. You can also handle different types of falls differently.",
+            "syntax": "try:\n    # code that might raise an exception\nexcept SomeException:\n    # handle the exception\nelse:\n    # code to run if no exception\nfinally:\n    # code that always runs\n\n# Custom exceptions\nclass MyError(Exception):\n    pass\n\n# Raising exceptions\nraise ValueError(\"Invalid value\")",
+            "example": "def divide_numbers(a, b):\n    try:\n        result = a / b\n    except ZeroDivisionError:\n        print(\"Cannot divide by zero!\")\n        return None\n    except TypeError:\n        print(\"Invalid types!\")\n        return None\n    except Exception as e:\n        print(f\"Unexpected error: {e}\")\n        return None\n    else:\n        print(f\"Division successful: {result}\")\n        return result\n    finally:\n        print(\"Division attempt completed.\")\n\nprint(divide_numbers(10, 2))\nprint(divide_numbers(10, 0))\nprint(divide_numbers(10, \"2\"))\n\n# Custom exception\nclass NegativeNumberError(Exception):\n    \"\"\"Raised when a negative number is provided.\"\"\"\n    pass\n\ndef check_positive(n):\n    if n < 0:\n        raise NegativeNumberError(f\"{n} is negative!\")\n    return n",
+            "output": "Division successful: 5.0\nDivision attempt completed.\n5.0\nCannot divide by zero!\nDivision attempt completed.\nNone\nInvalid types!\nDivision attempt completed.\nNone",
+            "dryRun": "1. Try 10/2 → success → print result\n2. Try 10/0 → ZeroDivisionError → handle\n3. Try 10/\"2\" → TypeError → handle\n4. Custom exception: NegativeNumberError raised when n < 0",
+            "timeComplexity": "O(1) - exception handling overhead is minimal",
+            "spaceComplexity": "O(1) - no extra space",
+            "interviewQuestions": [
+                "What is the difference between except and finally?",
+                "How would you create custom exceptions?",
+                "What is the difference between raise and assert?",
+                "What is the difference between Exception and BaseException?"
+            ],
+            "practice": "Write a program that handles multiple types of exceptions when working with user input. Then, create a custom exception for negative numbers.",
+            "commonMistakes": "Catching too broad exceptions (except:). Not using specific exceptions. Swallowing exceptions without logging. Using except without specifying exception type.",
+            "bestPractices": "Catch specific exceptions. Use logging for error tracking. Use finally for cleanup. Create custom exceptions for application-specific errors.",
+            "challenge": "Create a custom exception for invalid email format. Then, implement a function that validates email addresses and raises appropriate exceptions.",
+            "summary": "Exception handling makes programs robust and user-friendly. Always handle specific exceptions. Use custom exceptions for application-specific errors.",
+            "revision": "Exception handling → try/except/else/finally; raise to throw exceptions; custom exceptions; specific exception handling."
+        },
+        {
+            "id": "oop",
+            "title": "Object-Oriented Programming (OOP)",
+            "concept": "Object-Oriented Programming organizes code using classes and objects. It models real-world entities with attributes and behaviors. OOP principles include encapsulation, inheritance, polymorphism, and abstraction.",
+            "analogy": "A class is like a blueprint for a house. Objects are actual houses built from that blueprint. The blueprint defines the structure (attributes) and what you can do with the house (methods).",
+            "syntax": "class ClassName:\n    def __init__(self, params):\n        self.attr = params\n    def method(self):\n        return self.attr\n\n# Inheritance\nclass ChildClass(ParentClass):\n    def __init__(self, params):\n        super().__init__(params)\n\n# Magic methods\nclass MyClass:\n    def __str__(self): return str\n    def __repr__(self): return repr\n    def __len__(self): return len",
+            "example": "class Car:\n    def __init__(self, brand, model, year):\n        self.brand = brand\n        self.model = model\n        self.year = year\n        self.is_running = False\n    \n    def start(self):\n        if not self.is_running:\n            self.is_running = True\n            return f\"{self.brand} {self.model} is starting!\"\n        return f\"{self.brand} {self.model} is already running.\"\n    \n    def stop(self):\n        if self.is_running:\n            self.is_running = False\n            return f\"{self.brand} {self.model} is stopping!\"\n        return f\"{self.brand} {self.model} is already stopped.\"\n    \n    def __str__(self):\n        return f\"{self.brand} {self.model} ({self.year})\"\n\n# Inheritance\nclass ElectricCar(Car):\n    def __init__(self, brand, model, year, battery_capacity):\n        super().__init__(brand, model, year)\n        self.battery_capacity = battery_capacity\n    \n    def charge(self):\n        return f\"{self.brand} {self.model} is charging with {self.battery_capacity} kWh battery.\"\n    \n    def start(self):\n        # Override parent method\n        if not self.is_running:\n            self.is_running = True\n            return f\"{self.brand} {self.model} starts silently!\"\n        return f\"{self.brand} {self.model} is already running.\"\n\n# Polymorphism\ndef operate_vehicle(vehicle):\n    print(vehicle.start())\n    print(vehicle.stop())\n\nmy_car = Car(\"Tesla\", \"Model 3\", 2023)\nelectric_car = ElectricCar(\"Tesla\", \"Model S\", 2024, 100)\n\nprint(my_car)\noperate_vehicle(my_car)\noperate_vehicle(electric_car)\nprint(electric_car.charge())",
+            "output": "Tesla Model 3 (2023)\nTesla Model 3 is starting!\nTesla Model 3 is stopping!\nTesla Model S starts silently!\nTesla Model S is stopping!\nTesla Model S is charging with 100 kWh battery.",
+            "dryRun": "1. Define Car class with attributes and methods\n2. Define ElectricCar class inheriting from Car\n3. Car instance → start → stop\n4. ElectricCar instance → start (overridden) → stop → charge\n5. Polymorphism: operate_vehicle works with both Car and ElectricCar",
+            "timeComplexity": "O(1) for instantiation and method calls",
+            "spaceComplexity": "O(n) - each instance stores its attributes",
+            "interviewQuestions": [
+                "What are the four pillars of OOP? Explain each with examples.",
+                "Explain inheritance and polymorphism in Python.",
+                "What is the difference between class variables and instance variables?",
+                "What are magic methods (dunder methods)? Give examples.",
+                "What is the difference between composition and inheritance?"
+            ],
+            "practice": "Create a Student class with name, grade, and a method to display info. Then, create a GradStudent class that inherits from Student.",
+            "commonMistakes": "Forgetting self parameter in methods. Using class variables when instance variables are needed. Not calling super().__init__() in child classes.",
+            "bestPractices": "Use __init__ for initialization. Encapsulate data with private attributes (__). Use composition over inheritance when appropriate.",
+            "challenge": "Implement a class hierarchy: Animal → Mammal → Dog, with appropriate methods. Then, implement abstract base classes using ABC.",
+            "summary": "OOP uses classes and objects to model real-world concepts. Supports encapsulation, inheritance, polymorphism, and abstraction.",
+            "revision": "OOP → classes, objects, __init__, self, inheritance, polymorphism, encapsulation, abstraction, magic methods."
+        },
+        {
+            "id": "modules",
+            "title": "Modules",
+            "concept": "Modules are files containing Python code that can be imported and used in other programs. They help organize code into reusable components. Packages are collections of modules.",
+            "analogy": "Like a library of books. Each book (module) contains specific information that you can reference when needed. A section of the library (package) contains related books.",
+            "syntax": "import module_name\nfrom module_name import specific_function\nimport module_name as alias\nfrom package import module\nfrom . import local_module  # relative import",
+            "example": "# Create a module called math_utils.py\n# math_utils.py\ndef add(a, b):\n    return a + b\n\ndef multiply(a, b):\n    return a * b\n\nPI = 3.14159\n\n# In another file:\nimport math_utils\nfrom math_utils import multiply\nimport math_utils as mu\n\nprint(math_utils.add(5, 3))\nprint(multiply(5, 3))\nprint(mu.add(5, 3))\nprint(mu.PI)\n\n# Using standard library\nimport os\nimport sys\nimport datetime\n\nprint(os.getcwd())\nprint(sys.version)\nprint(datetime.datetime.now())",
+            "output": "8\n15\n8\n3.14159\n/current/working/directory\n3.11.0 (main, ...)\n2024-01-01 12:00:00.000000",
+            "dryRun": "1. Import module math_utils\n2. Use function add()\n3. Import specific function multiply()\n4. Use multiply()\n5. Import with alias mu\n6. Use mu.add() and mu.PI\n7. Import standard library modules",
+            "timeComplexity": "O(1) - import overhead is minimal",
+            "spaceComplexity": "O(n) - loads module into memory",
+            "interviewQuestions": [
+                "What is the difference between import and from import?",
+                "How does Python handle module imports? Explain sys.path.",
+                "What is the difference between a module and a package?",
+                "What is __name__ == '__main__' used for?"
+            ],
+            "practice": "Create a module with functions for basic math operations and import it. Then, create a package with multiple modules.",
+            "commonMistakes": "Creating circular imports. Not using __name__ == '__main__' for module testing. Using relative imports incorrectly.",
+            "bestPractices": "Use specific imports when possible. Organize modules logically. Use __all__ to control what's exported. Use __name__ == '__main__' for testing.",
+            "challenge": "Create a package with multiple modules for a calculator application. Include proper __init__.py files.",
+            "summary": "Modules help organize code into reusable components. They promote code reusability and maintainability. Packages group related modules.",
+            "revision": "Modules → import, from import, alias; use __name__ == '__main__' for testing; packages; __init__.py."
+        },
+        {
+            "id": "iterators",
+            "title": "Iterators",
+            "concept": "Iterators are objects that allow you to traverse through a sequence of data one element at a time. They implement the iterator protocol: __iter__() returns the iterator object, and __next__() returns the next element.",
+            "analogy": "Like a TV remote control that lets you go through channels one at a time. You can only move forward, and you can't go back without starting over.",
+            "syntax": "iterator = iter(iterable)\nnext(iterator)  # Get next element\n\n# Custom iterator\nclass MyIterator:\n    def __iter__(self):\n        return self\n    def __next__(self):\n        if done:\n            raise StopIteration\n        return value",
+            "example": "# List iteration\nfruits = [\"apple\", \"banana\", \"cherry\"]\niterator = iter(fruits)\n\nprint(next(iterator))\nprint(next(iterator))\nprint(next(iterator))\n\n# Custom iterator\nclass Counter:\n    def __init__(self, start, end):\n        self.current = start\n        self.end = end\n    \n    def __iter__(self):\n        return self\n    \n    def __next__(self):\n        if self.current > self.end:\n            raise StopIteration\n        value = self.current\n        self.current += 1\n        return value\n\ncounter = Counter(1, 5)\nfor num in counter:\n    print(num, end=\" \")\n\n# Using enumerate\nfor i, value in enumerate(fruits, start=1):\n    print(f\"{i}. {value}\")",
+            "output": "apple\nbanana\ncherry\n1 2 3 4 5\n1. apple\n2. banana\n3. cherry",
+            "dryRun": "1. Create iterator from list\n2. Get next → apple, next → banana, next → cherry\n3. Custom iterator: start=1,end=5\n4. For loop uses __next__ until StopIteration\n5. enumerate() provides index and value",
+            "timeComplexity": "O(1) per next() call",
+            "spaceComplexity": "O(1) - stores current position only",
+            "interviewQuestions": [
+                "What is the difference between iterable and iterator?",
+                "How do you create a custom iterator?",
+                "What is the purpose of StopIteration?",
+                "What is the difference between iter() and next()?"
+            ],
+            "practice": "Create a custom iterator that generates Fibonacci numbers. Then, create an iterator that reads a file line by line.",
+            "commonMistakes": "Forgetting to raise StopIteration. Not implementing __iter__ properly. Using iterators after they're exhausted.",
+            "bestPractices": "Use iterators for memory-efficient data traversal. Implement __iter__ and __next__. Use built-in iterators when possible.",
+            "challenge": "Implement an iterator that generates prime numbers indefinitely. Then, implement a reverse iterator for a custom data structure.",
+            "summary": "Iterators provide a way to access elements of a sequence one at a time, enabling memory-efficient operations.",
+            "revision": "Iterators → __iter__ and __next__; use iter() and next(); StopIteration for end; memory-efficient."
+        },
+        {
+            "id": "generators",
+            "title": "Generators",
+            "concept": "Generators are functions that produce a sequence of results using yield instead of return. They remember their state between calls, making them memory-efficient for large sequences.",
+            "analogy": "Like a production line where items are produced one at a time instead of all at once. Each yield produces one item and pauses production until the next item is requested.",
+            "syntax": "def generator_function():\n    yield value1\n    yield value2\n    # ...\n\n# Generator expression\ngen = (x for x in range(10))",
+            "example": "# Generator function\ndef count_up_to(n):\n    for i in range(1, n + 1):\n        yield i\n\n# Using generator\nfor num in count_up_to(5):\n    print(num, end=\" \")\n\n# Fibonacci generator\ndef fibonacci_generator():\n    a, b = 0, 1\n    while True:\n        yield a\n        a, b = b, a + b\n\nfib = fibonacci_generator()\nfor _ in range(10):\n    print(next(fib), end=\" \")\n\n# Generator expression\nsquares = (x**2 for x in range(5))\nfor square in squares:\n    print(square, end=\" \")\n\n# Using generator for memory efficiency\nlarge_range = (x for x in range(1000000))  # Memory efficient",
+            "output": "1 2 3 4 5\n0 1 1 2 3 5 8 13 21 34\n0 1 4 9 16",
+            "dryRun": "1. count_up_to(5): yield 1,2,3,4,5\n2. For loop consumes generator\n3. fibonacci_generator: infinite generator\n4. next() gets next Fibonacci number\n5. Generator expression squares numbers\n6. Large range generator uses little memory",
+            "timeComplexity": "O(1) per yield operation",
+            "spaceComplexity": "O(1) - stores only current state",
+            "interviewQuestions": [
+                "What is the difference between yield and return?",
+                "What are the advantages of generators over lists?",
+                "What is the difference between generator functions and generator expressions?",
+                "How would you create a pipeline with generators?"
+            ],
+            "practice": "Create a generator that yields all even numbers up to a given limit. Then, create a generator that reads a file line by line.",
+            "commonMistakes": "Using return instead of yield. Forgetting to handle StopIteration. Using generator when list is needed.",
+            "bestPractices": "Use generators for memory-efficient sequences. Use generator expressions for simple cases. Use yield from for delegating to subgenerators.",
+            "challenge": "Implement a generator that yields prime numbers indefinitely. Then, implement a generator that yields all permutations of a string.",
+            "summary": "Generators are memory-efficient, produce sequences on demand, and maintain state between calls. Useful for large datasets and infinite sequences.",
+            "revision": "Generators → yield, maintain state, memory-efficient, can be infinite; generator expressions; yield from."
+        },
+        {
+            "id": "decorators",
+            "title": "Decorators",
+            "concept": "Decorators are functions that modify the behavior of other functions. They are a powerful tool for code reuse and metaprogramming. Decorators wrap a function with additional functionality.",
+            "analogy": "Like adding a frame to a picture. The picture (function) stays the same, but the frame (decorator) adds extra functionality. Like adding a border, matting, and glass to a painting.",
+            "syntax": "@decorator_name\ndef function_to_decorate():\n    # code\n\n# Decorator with arguments\n@decorator(arg1, arg2)\ndef function_to_decorate():\n    # code",
+            "example": "# Timer decorator\nimport time\nfrom functools import wraps\n\ndef timer(func):\n    @wraps(func)  # Preserve function metadata\n    def wrapper(*args, **kwargs):\n        start = time.time()\n        result = func(*args, **kwargs)\n        end = time.time()\n        print(f\"{func.__name__} took {end - start:.4f} seconds\")\n        return result\n    return wrapper\n\n@timer\ndef slow_function():\n    time.sleep(1)\n    return \"Done\"\n\n@timer\ndef fast_function():\n    return \"Fast\"\n\nprint(slow_function())\nprint(fast_function())\n\n# Decorator with parameters\ndef repeat(times):\n    def decorator(func):\n        @wraps(func)\n        def wrapper(*args, **kwargs):\n            for _ in range(times):\n                result = func(*args, **kwargs)\n            return result\n        return wrapper\n    return decorator\n\n@repeat(3)\ndef say_hello():\n    print(\"Hello!\")\n\nsay_hello()\n\n# Multiple decorators\n@timer\n@repeat(2)\ndef double_decorated():\n    print(\"Function called\")\n\ndouble_decorated()",
+            "output": "slow_function took 1.0002 seconds\nDone\nfast_function took 0.0000 seconds\nFast\nHello!\nHello!\nHello!\nFunction called\nFunction called\nFunction called took 0.0001 seconds",
+            "dryRun": "1. timer decorator wraps function and measures execution time\n2. @timer on slow_function → prints time\n3. @timer on fast_function → prints time\n4. repeat decorator with parameter → runs function 3 times\n5. Multiple decorators: timer and repeat\n6. @wraps preserves function metadata",
+            "timeComplexity": "O(1) for decorator overhead",
+            "spaceComplexity": "O(1) - creates wrapper function",
+            "interviewQuestions": [
+                "What are decorators used for? Give common use cases.",
+                "How would you implement a decorator with parameters?",
+                "What is the purpose of functools.wraps?",
+                "How would you create a class decorator?"
+            ],
+            "practice": "Create a decorator that logs function calls with arguments. Then, create a decorator that caches function results (memoization).",
+            "commonMistakes": "Forgetting to use *args and **kwargs. Losing function metadata (use functools.wraps). Not handling return values properly.",
+            "bestPractices": "Use functools.wraps to preserve function metadata. Keep decorators simple and reusable. Use *args and **kwargs for flexibility.",
+            "challenge": "Implement a decorator that caches function results (memoization). Then, implement a decorator that validates input parameters.",
+            "summary": "Decorators modify function behavior. They're useful for logging, timing, access control, and more. Use functools.wraps to preserve metadata.",
+            "revision": "Decorators → @syntax, wrap functions, use *args/**kwargs, functools.wraps, decorator factories for parameters."
+        }
+    ],
+    "programs": [
+        {
+            "id": "factorial",
+            "title": "Factorial",
+            "problem": "Write a program to find the factorial of a given number n.",
+            "explanation": "Factorial of n (n!) is the product of all positive integers from 1 to n. For example, 5! = 5×4×3×2×1 = 120. Factorial is used in permutations, combinations, and probability.",
+            "code": "def factorial(n):\n    if n == 0 or n == 1:\n        return 1\n    return n * factorial(n - 1)\n\ndef factorial_iterative(n):\n    result = 1\n    for i in range(2, n + 1):\n        result *= i\n    return result\n\nn = 5\nprint(f\"Factorial of {n} (recursive): {factorial(n)}\")\nprint(f\"Factorial of {n} (iterative): {factorial_iterative(n)}\")",
+            "output": "Factorial of 5 (recursive): 120\nFactorial of 5 (iterative): 120",
+            "dryRun": "factorial(5) → 5 * factorial(4) → 5*4*factorial(3) → 5*4*3*factorial(2) → 5*4*3*2*factorial(1) → 5*4*3*2*1 = 120",
+            "timeComplexity": "O(n) - recursive calls or loop iterations",
+            "spaceComplexity": "O(n) - call stack for recursive; O(1) for iterative",
+            "interviewQuestions": [
+                "How would you implement factorial iteratively vs recursively?",
+                "What are the edge cases for factorial?",
+                "How would you handle very large numbers?"
+            ],
+            "practice": "Write a program to find factorial using both recursive and iterative approaches. Compare their performance for large n.",
+            "commonMistakes": "Forgetting base case for 0 and 1. Using recursion for very large n causing stack overflow. Not handling negative numbers.",
+            "bestPractices": "Use iterative approach for large n. Use math.factorial for production code. Handle edge cases (n=0, n=1).",
+            "challenge": "Find the factorial of 100 using Python's built-in math module. Then, implement a function that finds the number of trailing zeros in n!."
+        },
+        {
+            "id": "fibonacci",
+            "title": "Fibonacci",
+            "problem": "Generate the first n numbers in the Fibonacci sequence.",
+            "explanation": "Fibonacci sequence starts with 0,1 and each subsequent number is the sum of the two preceding ones. It appears in nature, art, and mathematics.",
+            "code": "def fibonacci(n):\n    a, b = 0, 1\n    result = []\n    for _ in range(n):\n        result.append(a)\n        a, b = b, a + b\n    return result\n\ndef fibonacci_recursive(n):\n    if n <= 0:\n        return 0\n    if n == 1:\n        return 1\n    return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)\n\n# Memoized version\nfrom functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef fibonacci_memo(n):\n    if n <= 0:\n        return 0\n    if n == 1:\n        return 1\n    return fibonacci_memo(n-1) + fibonacci_memo(n-2)\n\nprint(fibonacci(10))\nprint(fibonacci_recursive(6))\nprint(fibonacci_memo(50))",
+            "output": "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]\n8\n12586269025",
+            "dryRun": "a=0,b=1 → append 0 → a=1,b=1 → append 1 → a=1,b=2 → append 1 → a=2,b=3 → append 2 → ...",
+            "timeComplexity": "O(n) for iterative; O(2^n) for naive recursive; O(n) with memoization",
+            "spaceComplexity": "O(n) for iterative; O(n) for recursive (call stack); O(n) for memoization cache",
+            "interviewQuestions": [
+                "How would you implement Fibonacci recursively? What's the time complexity?",
+                "What is memoization and how would you apply it to Fibonacci?",
+                "What is the difference between top-down and bottom-up approaches?"
+            ],
+            "practice": "Implement Fibonacci recursively with memoization. Then, implement it iteratively and compare performance.",
+            "commonMistakes": "Starting with 1,1 instead of 0,1. Off-by-one errors in the loop. Using recursion for large n without memoization.",
+            "bestPractices": "Use iteration for efficiency. Use lru_cache for memoization. Use generators for memory efficiency.",
+            "challenge": "Find the nth Fibonacci number using matrix exponentiation (O(log n)). Then, implement a generator for infinite Fibonacci sequence."
+        },
+        {
+            "id": "prime-number",
+            "title": "Prime Number",
+            "problem": "Check if a given number is prime.",
+            "explanation": "A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. Prime numbers are fundamental in number theory and cryptography.",
+            "code": "def is_prime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\ndef sieve_of_eratosthenes(n):\n    primes = [True] * (n + 1)\n    primes[0] = primes[1] = False\n    for i in range(2, int(n**0.5) + 1):\n        if primes[i]:\n            for j in range(i*i, n + 1, i):\n                primes[j] = False\n    return [i for i in range(n + 1) if primes[i]]\n\nprint(is_prime(17))  # True\nprint(is_prime(15))  # False\nprint(sieve_of_eratosthenes(30))",
+            "output": "True\nFalse\n[2, 3, 5, 7, 11, 13, 17, 19, 23, 29]",
+            "dryRun": "is_prime(17) → check 2,3,5 (i=5,7) → no divisors → True\nsieve(30) → mark multiples of 2,3,5,7 → return primes",
+            "timeComplexity": "O(√n) for is_prime; O(n log log n) for sieve",
+            "spaceComplexity": "O(1) for is_prime; O(n) for sieve",
+            "interviewQuestions": [
+                "How would you optimize prime checking further?",
+                "What is the Sieve of Eratosthenes and how does it work?",
+                "What is the difference between prime and composite numbers?"
+            ],
+            "practice": "Print all prime numbers up to 100 using both methods. Then, find the nth prime number.",
+            "commonMistakes": "Forgetting to check n <= 1. Using n//2 instead of sqrt(n) for the loop. Not handling even numbers after 2.",
+            "bestPractices": "Check divisibility only up to sqrt(n). Skip even numbers after checking 2. Use sieve for multiple primes.",
+            "challenge": "Implement the Sieve of Eratosthenes to find all primes up to 1,000,000. Then, find the sum of all primes below 2 million."
+        },
+        {
+            "id": "palindrome",
+            "title": "Palindrome",
+            "problem": "Check if a string is a palindrome (reads the same forward and backward).",
+            "explanation": "A palindrome is a word, phrase, number, or other sequence that reads the same forward and backward. Examples: 'racecar', 'madam', 'A man, a plan, a canal: Panama'.",
+            "code": "def is_palindrome(s):\n    s = s.lower()\n    s = ''.join(char for char in s if char.isalnum())\n    return s == s[::-1]\n\ndef is_palindrome_two_pointer(s):\n    s = s.lower()\n    s = ''.join(char for char in s if char.isalnum())\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n\nprint(is_palindrome(\"racecar\"))  # True\nprint(is_palindrome(\"hello\"))    # False\nprint(is_palindrome(\"A man, a plan, a canal: Panama\"))  # True",
+            "output": "True\nFalse\nTrue",
+            "dryRun": "\"racecar\" → lowercase → \"racecar\" → alphanumeric → \"racecar\" → reverse → \"racecar\" → equal → True",
+            "timeComplexity": "O(n) - string reversal and comparison",
+            "spaceComplexity": "O(n) - creates new string",
+            "interviewQuestions": [
+                "How would you check a palindrome without using extra space?",
+                "What about palindrome numbers? How would you check without converting to string?",
+                "How would you find the longest palindromic substring?"
+            ],
+            "practice": "Check if a number is a palindrome without converting to string. Then, find all palindromic substrings in a given string.",
+            "commonMistakes": "Not handling case insensitivity. Ignoring spaces and punctuation. Using inefficient string operations.",
+            "bestPractices": "Use two-pointer technique for O(1) extra space. Normalize the string first. Handle edge cases (empty string, single character).",
+            "challenge": "Find the longest palindromic substring in a given string using the expand-around-center technique. Then, implement the Manacher's algorithm."
+        },
+        {
+            "id": "armstrong-number",
+            "title": "Armstrong Number",
+            "problem": "Check if a number is an Armstrong number (sum of digits raised to power of number of digits equals the number).",
+            "explanation": "For a 3-digit number, sum of cubes of digits equals the number. Example: 153 = 1³+5³+3³. Also known as narcissistic numbers.",
+            "code": "def is_armstrong(n):\n    num_str = str(n)\n    k = len(num_str)\n    total = sum(int(d) ** k for d in num_str)\n    return total == n\n\ndef find_armstrong_numbers(limit):\n    return [n for n in range(1, limit + 1) if is_armstrong(n)]\n\nprint(is_armstrong(153))  # True\nprint(is_armstrong(123))  # False\nprint(find_armstrong_numbers(1000))",
+            "output": "True\nFalse\n[1, 2, 3, 4, 5, 6, 7, 8, 9, 153, 370, 371, 407]",
+            "dryRun": "n=153 → digits:1,5,3 → k=3 → 1³+5³+3³=1+125+27=153 → True",
+            "timeComplexity": "O(log n) - number of digits",
+            "spaceComplexity": "O(log n) - string conversion",
+            "interviewQuestions": [
+                "What are some other narcissistic numbers?",
+                "How would you find all Armstrong numbers in a range efficiently?",
+                "What is the difference between Armstrong and perfect numbers?"
+            ],
+            "practice": "Find all 3-digit Armstrong numbers. Then, find all Armstrong numbers up to 100,000.",
+            "commonMistakes": "Using wrong power (always 3 instead of number of digits). Forgetting to handle single-digit numbers (they are Armstrong).",
+            "bestPractices": "Use string conversion for simplicity. Use math.pow or ** for exponentiation. Cache results for efficiency.",
+            "challenge": "Find Armstrong numbers up to 100,000 efficiently. Then, find the sum of all Armstrong numbers below 1,000,000."
+        },
+        {
+            "id": "gcd-lcm",
+            "title": "GCD & LCM",
+            "problem": "Find the GCD (Greatest Common Divisor) and LCM (Least Common Multiple) of two numbers.",
+            "explanation": "GCD is the largest number that divides both numbers. LCM is the smallest number that is a multiple of both. GCD × LCM = a × b.",
+            "code": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\ndef lcm(a, b):\n    return a * b // gcd(a, b)\n\ndef gcd_extended(a, b):\n    if b == 0:\n        return a, 1, 0\n    g, x1, y1 = gcd_extended(b, a % b)\n    x = y1\n    y = x1 - (a // b) * y1\n    return g, x, y\n\na, b = 48, 18\ng = gcd(a, b)\nl = lcm(a, b)\nprint(f\"GCD of {a} and {b} = {g}\")\nprint(f\"LCM of {a} and {b} = {l}\")\n\n# Extended GCD\ng, x, y = gcd_extended(a, b)\nprint(f\"GCD: {g}, x: {x}, y: {y}\")\nprint(f\"{a}*{x} + {b}*{y} = {g}\")",
+            "output": "GCD of 48 and 18 = 6\nLCM of 48 and 18 = 144\nGCD: 6, x: -1, y: 3\n48*-1 + 18*3 = 6",
+            "dryRun": "48 and 18 → gcd: 48%18=12, 18%12=6, 12%6=0 → 6\nlcm: 48*18/6=144",
+            "timeComplexity": "O(log min(a,b)) - Euclidean algorithm",
+            "spaceComplexity": "O(1) for iterative; O(log n) for recursive extended",
+            "interviewQuestions": [
+                "Explain the Euclidean algorithm for finding GCD.",
+                "How would you find GCD of more than two numbers?",
+                "What is the extended Euclidean algorithm used for?"
+            ],
+            "practice": "Implement GCD using the Euclidean algorithm without math.gcd. Then, find GCD of three numbers.",
+            "commonMistakes": "Using a*b/lcm instead of a*b//gcd for LCM (can be a float). Not handling negative numbers.",
+            "bestPractices": "Use math.gcd for production. Understand the Euclidean algorithm. Use // for integer division.",
+            "challenge": "Find the GCD of three numbers using reduce from functools. Then, implement the extended Euclidean algorithm for modular inverse."
+        },
+        {
+            "id": "anagram",
+            "title": "Anagram",
+            "problem": "Check if two strings are anagrams (same characters, different order).",
+            "explanation": "Two strings are anagrams if they contain the same characters with the same frequencies. Example: 'listen' and 'silent' are anagrams.",
+            "code": "from collections import Counter\n\ndef are_anagrams(s1, s2):\n    s1 = s1.lower().replace(\" \", \"\")\n    s2 = s2.lower().replace(\" \", \"\")\n    return sorted(s1) == sorted(s2)\n\ndef are_anagrams_counter(s1, s2):\n    s1 = s1.lower().replace(\" \", \"\")\n    s2 = s2.lower().replace(\" \", \"\")\n    return Counter(s1) == Counter(s2)\n\ndef group_anagrams(words):\n    from collections import defaultdict\n    anagram_groups = defaultdict(list)\n    for word in words:\n        sorted_word = ''.join(sorted(word.lower()))\n        anagram_groups[sorted_word].append(word)\n    return list(anagram_groups.values())\n\nprint(are_anagrams(\"listen\", \"silent\"))  # True\nprint(are_anagrams(\"hello\", \"world\"))    # False\nprint(are_anagrams_counter(\"listen\", \"silent\"))  # True\n\nwords = [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]\nprint(group_anagrams(words))",
+            "output": "True\nFalse\nTrue\n[['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]",
+            "dryRun": "\"listen\" → sorted → [\"e\",\"i\",\"l\",\"n\",\"s\",\"t\"]; \"silent\" → sorted → same → True",
+            "timeComplexity": "O(n log n) for sorting; O(n) with Counter",
+            "spaceComplexity": "O(n) - sorted copies or Counter",
+            "interviewQuestions": [
+                "How would you check anagrams without sorting?",
+                "What about Unicode characters?",
+                "How would you group anagrams from a list of words?"
+            ],
+            "practice": "Use a frequency counter (dictionary) to check anagrams in O(n) time. Then, group anagrams from a large list.",
+            "commonMistakes": "Not handling case and spaces. Using == instead of sorted comparison. Not handling empty strings.",
+            "bestPractices": "Use Counter from collections for O(n) time. Normalize strings first. Use defaultdict for grouping.",
+            "challenge": "Find all anagram groups in a list of words. Then, find the largest anagram group in a dictionary."
+        },
+        {
+            "id": "count-vowels",
+            "title": "Count Vowels",
+            "problem": "Count the number of vowels (a, e, i, o, u) in a string.",
+            "explanation": "Iterate through the string and count each vowel encountered. Vowels are fundamental in phonetics and text analysis.",
+            "code": "def count_vowels(s):\n    vowels = set(\"aeiouAEIOU\")\n    return sum(1 for ch in s if ch in vowels)\n\ndef count_vowels_consonants(s):\n    vowels = set(\"aeiouAEIOU\")\n    v_count = 0\n    c_count = 0\n    for ch in s:\n        if ch.isalpha():\n            if ch in vowels:\n                v_count += 1\n            else:\n                c_count += 1\n    return v_count, c_count\n\ndef count_vowel_frequencies(s):\n    vowels = \"aeiou\"\n    freq = {v: 0 for v in vowels}\n    for ch in s.lower():\n        if ch in vowels:\n            freq[ch] += 1\n    return freq\n\nprint(count_vowels(\"Hello World\"))  # 3\nprint(count_vowels_consonants(\"Hello World\"))  # (3, 7)\nprint(count_vowel_frequencies(\"Hello World\"))",
+            "output": "3\n(3, 7)\n{'a': 0, 'e': 1, 'i': 0, 'o': 2, 'u': 0}",
+            "dryRun": "\"Hello World\" → H(no), e(yes), l(no), l(no), o(yes), (no), W(no), o(yes), r(no), l(no), d(no) → 3",
+            "timeComplexity": "O(n) - single pass",
+            "spaceComplexity": "O(1) - constant set",
+            "interviewQuestions": [
+                "How would you count vowels including y?",
+                "What about counting consonants too?",
+                "How would you count the frequency of each vowel?"
+            ],
+            "practice": "Count the frequency of each vowel separately. Then, count vowels and consonants in a paragraph.",
+            "commonMistakes": "Forgetting to check both upper and lower case. Using a list instead of a set for O(1) lookup.",
+            "bestPractices": "Use a set for O(1) lookup. Use sum() with a generator for conciseness. Use defaultdict for frequencies.",
+            "challenge": "Count vowels in a large text file efficiently. Then, find the most frequent vowel in a text."
+        },
+        {
+            "id": "reverse-string",
+            "title": "Reverse String",
+            "problem": "Reverse a string without using built-in reverse functions.",
+            "explanation": "Reverse the order of characters in a string. This is a common problem that tests understanding of string manipulation and algorithms.",
+            "code": "def reverse_string(s):\n    return s[::-1]\n\ndef reverse_string_loop(s):\n    result = []\n    for i in range(len(s) - 1, -1, -1):\n        result.append(s[i])\n    return ''.join(result)\n\ndef reverse_string_two_pointer(s):\n    s = list(s)  # Convert to list for in-place modification\n    left, right = 0, len(s) - 1\n    while left < right:\n        s[left], s[right] = s[right], s[left]\n        left += 1\n        right -= 1\n    return ''.join(s)\n\ndef reverse_words(sentence):\n    words = sentence.split()\n    return ' '.join(reversed(words))\n\nprint(reverse_string(\"Python\"))  # \"nohtyP\"\nprint(reverse_string_loop(\"Python\"))  # \"nohtyP\"\nprint(reverse_string_two_pointer(\"Python\"))  # \"nohtyP\"\nprint(reverse_words(\"Hello World from Python\"))  # \"Python from World Hello\"",
+            "output": "nohtyP\nnohtyP\nnohtyP\nPython from World Hello",
+            "dryRun": "\"Python\" → slice with step -1 → \"nohtyP\"",
+            "timeComplexity": "O(n) - creates a new string",
+            "spaceComplexity": "O(n) - new string",
+            "interviewQuestions": [
+                "How would you reverse a string in-place?",
+                "What about reversing words in a sentence?",
+                "How would you reverse a string using recursion?"
+            ],
+            "practice": "Reverse a string using a loop (without slicing). Then, reverse the order of words in a sentence.",
+            "commonMistakes": "Using reverse() which only works on lists. Forgetting strings are immutable. Not handling empty strings.",
+            "bestPractices": "Use slicing for simplicity. Use ''.join(reversed(s)) for clarity. Use two-pointer for in-place operations.",
+            "challenge": "Reverse the order of words in a sentence without reversing the words themselves. Then, reverse a string using recursion."
+        },
+        {
+            "id": "frequency-counter",
+            "title": "Frequency Counter",
+            "problem": "Count the frequency of each character in a string.",
+            "explanation": "Iterate through the string and count occurrences of each character. Useful for text analysis, compression, and cryptography.",
+            "code": "from collections import Counter, defaultdict\n\ndef char_frequency(s):\n    return dict(Counter(s))\n\ndef char_frequency_manual(s):\n    freq = {}\n    for ch in s:\n        freq[ch] = freq.get(ch, 0) + 1\n    return freq\n\ndef char_frequency_defaultdict(s):\n    freq = defaultdict(int)\n    for ch in s:\n        freq[ch] += 1\n    return dict(freq)\n\ndef most_common_char(s):\n    freq = Counter(s)\n    return freq.most_common(1)[0] if freq else None\n\ntext = \"hello\"\nprint(char_frequency(text))  # {'h':1, 'e':1, 'l':2, 'o':1}\nprint(char_frequency_manual(text))\nprint(char_frequency_defaultdict(text))\nprint(most_common_char(text))  # ('l', 2)",
+            "output": "{'h':1, 'e':1, 'l':2, 'o':1}\n{'h':1, 'e':1, 'l':2, 'o':1}\n{'h':1, 'e':1, 'l':2, 'o':1}\n('l', 2)",
+            "dryRun": "\"hello\" → h:1, e:1, l:2, o:1",
+            "timeComplexity": "O(n) - single pass",
+            "spaceComplexity": "O(k) - where k is number of unique characters",
+            "interviewQuestions": [
+                "How would you implement this without Counter?",
+                "What about frequency of words?",
+                "How would you find the most frequent character?"
+            ],
+            "practice": "Implement char frequency using a plain dictionary. Then, find the most common character in a string.",
+            "commonMistakes": "Using a list and .count() for each character → O(n²). Not handling empty strings.",
+            "bestPractices": "Use Counter from collections. Use defaultdict(int) for manual counting. Use most_common() for frequent items.",
+            "challenge": "Find the most common character and its frequency. Then, find all characters that appear more than n times."
+        },
+        {
+            "id": "matrix-addition",
+            "title": "Matrix Addition",
+            "problem": "Add two matrices (2D lists) of the same dimensions.",
+            "explanation": "Matrix addition adds corresponding elements of two matrices. Used in linear algebra, image processing, and graphics.",
+            "code": "def add_matrices(A, B):\n    rows = len(A)\n    cols = len(A[0])\n    result = [[A[i][j] + B[i][j] for j in range(cols)] for i in range(rows)]\n    return result\n\ndef add_matrices_zip(A, B):\n    return [[a + b for a, b in zip(row_a, row_b)] for row_a, row_b in zip(A, B)]\n\ndef matrix_transpose(A):\n    return [[A[j][i] for j in range(len(A))] for i in range(len(A[0]))]\n\nA = [[1,2],[3,4]]\nB = [[5,6],[7,8]]\nprint(add_matrices(A, B))  # [[6,8],[10,12]]\nprint(add_matrices_zip(A, B))  # [[6,8],[10,12]]\nprint(matrix_transpose(A))  # [[1,3],[2,4]]",
+            "output": "[[6, 8], [10, 12]]\n[[6, 8], [10, 12]]\n[[1, 3], [2, 4]]",
+            "dryRun": "A[0][0]=1 + B[0][0]=5 → 6; A[0][1]=2+6=8; A[1][0]=3+7=10; A[1][1]=4+8=12",
+            "timeComplexity": "O(rows × cols)",
+            "spaceComplexity": "O(rows × cols) - result matrix",
+            "interviewQuestions": [
+                "How would you add matrices with different dimensions?",
+                "What about matrix multiplication?",
+                "How would you transpose a matrix?"
+            ],
+            "practice": "Write a function to multiply two matrices. Then, write a function to transpose a matrix.",
+            "commonMistakes": "Not checking dimensions before adding. Using incorrect nested loop indices.",
+            "bestPractices": "Use list comprehensions for conciseness. Validate dimensions first. Use zip for row-wise operations.",
+            "challenge": "Implement matrix multiplication with error handling. Then, implement matrix rotation (90 degrees)."
+        },
+        {
+            "id": "file-read-write",
+            "title": "File Read/Write",
+            "problem": "Read from and write to a text file in Python.",
+            "explanation": "Use open() to get a file object, then read or write content. File operations are essential for data persistence and processing.",
+            "code": "# Writing to a file\nwith open(\"example.txt\", \"w\") as f:\n    f.write(\"Hello, World!\\nSecond line.\")\n\n# Reading from a file\nwith open(\"example.txt\", \"r\") as f:\n    content = f.read()\n    print(content)\n\n# Appending to a file\nwith open(\"example.txt\", \"a\") as f:\n    f.write(\"\\nThird line.\")\n\n# Reading line by line\nwith open(\"example.txt\", \"r\") as f:\n    lines = f.readlines()\n    for i, line in enumerate(lines, 1):\n        print(f\"Line {i}: {line.strip()}\")\n\n# Reading with encoding\nwith open(\"example.txt\", \"r\", encoding=\"utf-8\") as f:\n    content = f.read()",
+            "output": "Hello, World!\nSecond line.\nLine 1: Hello, World!\nLine 2: Second line.\nLine 3: Third line.",
+            "dryRun": "Open file in write mode → write content → close → open read mode → read all → print",
+            "timeComplexity": "O(n) - where n is file size",
+            "spaceComplexity": "O(n) - when reading entire file",
+            "interviewQuestions": [
+                "What is the difference between read(), readline(), and readlines()?",
+                "How would you handle file not found?",
+                "What is the difference between 'w' and 'a' modes?"
+            ],
+            "practice": "Write a program to count lines in a text file. Then, write a program that reads a CSV file and processes its data.",
+            "commonMistakes": "Forgetting to close the file (use with statement). Not handling exceptions. Using wrong file modes.",
+            "bestPractices": "Always use with statement. Use try/except for error handling. Use appropriate encoding (utf-8).",
+            "challenge": "Copy a file line by line without loading it all into memory. Then, implement a function that finds and replaces text in a file."
+        },
+        {
+            "id": "pattern-pyramid",
+            "title": "Pattern Pyramid",
+            "problem": "Print a pyramid pattern of stars.",
+            "explanation": "Use nested loops to print a triangular pattern. Pattern printing is a common way to practice nested loops and string manipulation.",
+            "code": "def print_pyramid(n):\n    for i in range(1, n+1):\n        print(\" \" * (n-i) + \"*\" * (2*i-1))\n\ndef print_diamond(n):\n    # Upper half\n    for i in range(1, n+1):\n        print(\" \" * (n-i) + \"*\" * (2*i-1))\n    # Lower half\n    for i in range(n-1, 0, -1):\n        print(\" \" * (n-i) + \"*\" * (2*i-1))\n\ndef print_hollow_pyramid(n):\n    for i in range(1, n+1):\n        if i == n:\n            print(\"*\" * (2*i-1))\n        else:\n            print(\" \" * (n-i) + \"*\" + \" \" * (2*i-3) + (\"*\" if i > 1 else \"\"))\n\ndef print_right_triangle(n):\n    for i in range(1, n+1):\n        print(\"*\" * i)\n\nprint_pyramid(5)\nprint_diamond(3)\nprint_hollow_pyramid(5)",
+            "output": "    *\n   ***\n  *****\n *******\n*********\n  *\n ***\n*****\n ***\n  *\n    *\n   * *\n  *   *\n *     *\n*********",
+            "dryRun": "i=1 → 4 spaces + 1 star; i=2 → 3 spaces + 3 stars; ...",
+            "timeComplexity": "O(n²) - printing stars",
+            "spaceComplexity": "O(1) - no extra storage",
+            "interviewQuestions": [
+                "How would you print a diamond pattern?",
+                "What about a hollow pyramid?",
+                "How would you print a pattern with numbers instead of stars?"
+            ],
+            "practice": "Print a right-angled triangle pattern. Then, print a pyramid with numbers.",
+            "commonMistakes": "Incorrect number of spaces or stars. Off-by-one in the formula.",
+            "bestPractices": "Use string multiplication for clarity. Break down the pattern into spaces and stars.",
+            "challenge": "Print a full diamond pattern with the given height. Then, print a pattern that spells your name using ASCII art."
+        },
+        {
+            "id": "bubble-sort",
+            "title": "Bubble Sort",
+            "problem": "Sort a list using the bubble sort algorithm.",
+            "explanation": "Repeatedly step through the list, compare adjacent elements, and swap them if they are in the wrong order. The largest element 'bubbles' to the end.",
+            "code": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        swapped = False\n        for j in range(0, n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n                swapped = True\n        if not swapped:\n            break\n    return arr\n\ndef bubble_sort_optimized(arr):\n    n = len(arr)\n    for i in range(n):\n        swapped = False\n        for j in range(0, n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n                swapped = True\n        if not swapped:\n            break\n    return arr\n\narr = [64, 34, 25, 12, 22, 11, 90]\nprint(bubble_sort(arr.copy()))\nprint(bubble_sort_optimized(arr.copy()))",
+            "output": "[11, 12, 22, 25, 34, 64, 90]\n[11, 12, 22, 25, 34, 64, 90]",
+            "dryRun": "Compare 64>34 → swap; 64>25 → swap; ... repeat until sorted",
+            "timeComplexity": "O(n²) - worst and average case; O(n) - best case with optimization",
+            "spaceComplexity": "O(1) - in-place sorting",
+            "interviewQuestions": [
+                "How would you optimize bubble sort?",
+                "What is the best-case time complexity of bubble sort?",
+                "What is the difference between bubble sort and selection sort?"
+            ],
+            "practice": "Implement bubble sort with an early exit optimization. Then, compare its performance with selection sort.",
+            "commonMistakes": "Off-by-one in the inner loop. Not stopping early when sorted.",
+            "bestPractices": "Use for simple educational purposes. Use built-in sort for production. Add early exit optimization.",
+            "challenge": "Implement cocktail shaker sort (bidirectional bubble sort). Then, implement insertion sort and compare performance."
+        },
+        {
+            "id": "binary-search",
+            "title": "Binary Search",
+            "problem": "Search for a target in a sorted list using binary search.",
+            "explanation": "Divide the search interval in half repeatedly until the target is found or the interval is empty. Binary search is O(log n) and requires a sorted array.",
+            "code": "def binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1\n\ndef binary_search_recursive(arr, target, left, right):\n    if left > right:\n        return -1\n    mid = (left + right) // 2\n    if arr[mid] == target:\n        return mid\n    elif arr[mid] < target:\n        return binary_search_recursive(arr, target, mid + 1, right)\n    else:\n        return binary_search_recursive(arr, target, left, mid - 1)\n\ndef binary_search_first_occurrence(arr, target):\n    left, right = 0, len(arr) - 1\n    result = -1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            result = mid\n            right = mid - 1\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return result\n\narr = [1, 3, 5, 7, 7, 7, 9, 11, 13]\nprint(binary_search(arr, 7))  # 3\nprint(binary_search_recursive(arr, 7, 0, len(arr)-1))  # 3\nprint(binary_search_first_occurrence(arr, 7))  # 3",
+            "output": "3\n3\n3",
+            "dryRun": "arr=[1,3,5,7,9,11,13], target=7 → mid=3 → arr[3]=7 → return 3",
+            "timeComplexity": "O(log n) - each step halves the search space",
+            "spaceComplexity": "O(1) - iterative; O(log n) - recursive",
+            "interviewQuestions": [
+                "What is the recursive version of binary search?",
+                "What if the array is not sorted?",
+                "How would you find the first or last occurrence of a target with duplicates?"
+            ],
+            "practice": "Implement binary search recursively. Then, find the first and last occurrence of a target in a sorted array.",
+            "commonMistakes": "Off-by-one in mid calculation. Not updating left/right correctly. Forgetting to handle duplicates.",
+            "bestPractices": "Use while left <= right. Use (left + right) // 2 to avoid overflow. Handle edge cases (empty array).",
+            "challenge": "Find the first or last occurrence of a target in a sorted array with duplicates. Then, implement binary search in a rotated sorted array."
+        },
+        {
+            "id": "linear-search",
+            "title": "Linear Search",
+            "problem": "Search for a target in a list using linear (sequential) search.",
+            "explanation": "Check each element one by one until the target is found or the list ends. Linear search is O(n) and works on unsorted data.",
+            "code": "def linear_search(arr, target):\n    for i, val in enumerate(arr):\n        if val == target:\n            return i\n    return -1\n\ndef linear_search_all(arr, target):\n    return [i for i, val in enumerate(arr) if val == target]\n\ndef linear_search_dict(arr, key, value):\n    for i, item in enumerate(arr):\n        if item.get(key) == value:\n            return i\n    return -1\n\narr = [4, 2, 7, 1, 9, 7]\nprint(linear_search(arr, 7))  # 2\nprint(linear_search_all(arr, 7))  # [2, 5]\n\n# Search in list of dictionaries\npeople = [{\"name\": \"Alice\", \"age\": 25}, {\"name\": \"Bob\", \"age\": 30}]\nprint(linear_search_dict(people, \"name\", \"Bob\"))  # 1",
+            "output": "2\n[2, 5]\n1",
+            "dryRun": "Check index0=4≠7, index1=2≠7, index2=7 → return 2",
+            "timeComplexity": "O(n) - worst case",
+            "spaceComplexity": "O(1) - iterative; O(k) for all occurrences",
+            "interviewQuestions": [
+                "When would you use linear search over binary search?",
+                "How would you find all occurrences of a target?",
+                "How would you search in a list of dictionaries?"
+            ],
+            "practice": "Find all occurrences of a target in a list. Then, implement linear search on a list of dictionaries by a key.",
+            "commonMistakes": "Forgetting to return -1 when not found. Not handling empty lists.",
+            "bestPractices": "Use for small lists or unsorted data. Use enumerate for index and value. Handle edge cases.",
+            "challenge": "Implement linear search on a list of dictionaries by a key. Then, implement a linear search that returns the first occurrence using a key function."
+        },
+        {
+            "id": "recursion-sum",
+            "title": "Recursion Sum",
+            "problem": "Sum all numbers in a list using recursion.",
+            "explanation": "Sum the first element plus the sum of the rest of the list recursively. Demonstrates recursive thinking and base case handling.",
+            "code": "def sum_recursive(arr):\n    if not arr:\n        return 0\n    return arr[0] + sum_recursive(arr[1:])\n\ndef sum_recursive_optimized(arr):\n    def helper(arr, index):\n        if index == len(arr):\n            return 0\n        return arr[index] + helper(arr, index + 1)\n    return helper(arr, 0)\n\ndef sum_nested_recursive(arr):\n    total = 0\n    for item in arr:\n        if isinstance(item, list):\n            total += sum_nested_recursive(item)\n        else:\n            total += item\n    return total\n\nprint(sum_recursive([1,2,3,4,5]))  # 15\nprint(sum_recursive_optimized([1,2,3,4,5]))  # 15\nprint(sum_nested_recursive([1, [2, 3], [4, [5, 6]]]))  # 21",
+            "output": "15\n15\n21",
+            "dryRun": "1+sum([2,3,4,5]) → 1+2+sum([3,4,5]) → ... → 15",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n) - call stack",
+            "interviewQuestions": [
+                "What is the iterative version of this?",
+                "How would you sum nested lists recursively?",
+                "What is the maximum recursion depth for this?"
+            ],
+            "practice": "Sum nested lists recursively. Then, implement an iterative version using a stack.",
+            "commonMistakes": "Not handling empty list base case. Using arr[1:] which creates copies (inefficient).",
+            "bestPractices": "Use for educational purposes. Use sum() for production. Use indexing for efficiency.",
+            "challenge": "Sum all numbers in a deeply nested list structure. Then, implement a recursive function to find the maximum depth of a nested list."
+        },
+        {
+            "id": "recursion-fibonacci",
+            "title": "Recursion Fibonacci",
+            "problem": "Find the nth Fibonacci number using recursion (naive).",
+            "explanation": "F(n) = F(n-1) + F(n-2) with base cases F(0)=0, F(1)=1. This demonstrates the inefficiency of naive recursion without memoization.",
+            "code": "def fib_recursive(n):\n    if n <= 0:\n        return 0\n    if n == 1:\n        return 1\n    return fib_recursive(n-1) + fib_recursive(n-2)\n\n# Memoized version\nfrom functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef fib_memo(n):\n    if n <= 0:\n        return 0\n    if n == 1:\n        return 1\n    return fib_memo(n-1) + fib_memo(n-2)\n\n# Iterative version\ndef fib_iterative(n):\n    if n <= 0:\n        return 0\n    if n == 1:\n        return 1\n    a, b = 0, 1\n    for _ in range(2, n + 1):\n        a, b = b, a + b\n    return b\n\nprint(fib_recursive(6))  # 8\nprint(fib_memo(50))  # 12586269025\nprint(fib_iterative(50))  # 12586269025",
+            "output": "8\n12586269025\n12586269025",
+            "dryRun": "fib(6) = fib(5)+fib(4) = fib(4)+fib(3)+fib(3)+fib(2) = ... = 8",
+            "timeComplexity": "O(2ⁿ) - exponential for naive; O(n) with memoization; O(n) iterative",
+            "spaceComplexity": "O(n) - call stack; O(n) for memoization cache",
+            "interviewQuestions": [
+                "How would you optimize this?",
+                "What is memoization and how does it work?",
+                "What is the difference between top-down and bottom-up approaches?"
+            ],
+            "practice": "Implement Fibonacci with memoization (top-down). Then, implement it iteratively (bottom-up).",
+            "commonMistakes": "Using recursion for large n causing slowdown. Not using memoization for overlapping subproblems.",
+            "bestPractices": "Use iterative or memoized version for performance. Use lru_cache for automatic memoization.",
+            "challenge": "Compare performance of naive vs memoized for n=40. Then, implement Fibonacci using matrix exponentiation (O(log n))."
+        },
+        {
+            "id": "list-comprehension",
+            "title": "List Comprehension",
+            "problem": "Create a new list using list comprehensions.",
+            "explanation": "List comprehensions provide a concise way to create lists based on existing iterables. They are more readable and often faster than loops.",
+            "code": "# Basic list comprehension\nsquares = [x**2 for x in range(10)]\nprint(squares)\n\n# With condition\nevens = [x for x in range(20) if x % 2 == 0]\nprint(evens)\n\n# Nested comprehension\nmatrix = [[i*j for j in range(1, 4)] for i in range(1, 4)]\nprint(matrix)\n\n# Flatten a nested list\nnested = [[1, 2], [3, 4], [5, 6]]\nflattened = [item for sublist in nested for item in sublist]\nprint(flattened)\n\n# Dictionary comprehension\nsquare_dict = {x: x**2 for x in range(5)}\nprint(square_dict)\n\n# Set comprehension\nsquare_set = {x**2 for x in range(5)}\nprint(square_set)",
+            "output": "[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]\n[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]\n[[1, 2, 3], [2, 4, 6], [3, 6, 9]]\n[1, 2, 3, 4, 5, 6]\n{0: 0, 1: 1, 2: 4, 3: 9, 4: 16}\n{0, 1, 4, 9, 16}",
+            "dryRun": "Range 0-9 → square each → new list",
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n) - new list",
+            "interviewQuestions": [
+                "What is the difference between list comprehension and generator expression?",
+                "How would you create a nested list comprehension?",
+                "What are the performance implications of list comprehensions?"
+            ],
+            "practice": "Use list comprehension to flatten a nested list. Then, use dictionary comprehension to create a mapping.",
+            "commonMistakes": "Using list comprehension for side effects (use loop instead). Creating overly complex comprehensions.",
+            "bestPractices": "Use for simple transformations. Keep readable, not too nested. Use generator expressions for large datasets.",
+            "challenge": "Create a nested list comprehension for a 3x3 identity matrix. Then, implement a function that uses list comprehension to transpose a matrix."
+        },
+        {
+            "id": "lambda-functions",
+            "title": "Lambda Functions",
+            "problem": "Use lambda functions (anonymous functions) in Python.",
+            "explanation": "Lambda functions are small, single-expression functions defined with the lambda keyword. They are useful for short operations, especially with map, filter, and sort.",
+            "code": "# Basic lambda\nsquare = lambda x: x**2\nprint(square(5))  # 25\n\n# Using with map\nnums = [1, 2, 3, 4]\nsquared = list(map(lambda x: x**2, nums))\nprint(squared)  # [1, 4, 9, 16]\n\n# Using with filter\nevens = list(filter(lambda x: x % 2 == 0, nums))\nprint(evens)  # [2, 4]\n\n# Using with sorted\npairs = [(1, 'one'), (3, 'three'), (2, 'two')]\nsorted_by_second = sorted(pairs, key=lambda x: x[1])\nprint(sorted_by_second)  # [(1, 'one'), (3, 'three'), (2, 'two')]\n\n# Using with reduce\nfrom functools import reduce\nproduct = reduce(lambda x, y: x * y, [1, 2, 3, 4])\nprint(product)  # 24",
+            "output": "25\n[1, 4, 9, 16]\n[2, 4]\n[(1, 'one'), (2, 'two'), (3, 'three')]\n24",
+            "dryRun": "lambda x: x**2 → called with 5 → 25",
+            "timeComplexity": "O(1) for lambda; O(n) with map/filter",
+            "spaceComplexity": "O(1) for lambda; O(n) for result",
+            "interviewQuestions": [
+                "What are the limitations of lambda functions?",
+                "When should you use lambda vs def?",
+                "How would you use lambda with sorted?"
+            ],
+            "practice": "Use lambda with filter() to get even numbers from a list. Then, use lambda to sort a list of tuples by the second element.",
+            "commonMistakes": "Using lambda for multi-statement logic. Forgetting to call the lambda.",
+            "bestPractices": "Use for short, single-expression functions. Use def for complex logic. Use with map, filter, sort, reduce.",
+            "challenge": "Sort a list of dictionaries by a specific key using lambda. Then, use lambda with reduce to implement factorial."
+        }
+    ],
+    "dsa": [
+        {
+            "id": "big-o-notation",
+            "title": "Big O Notation",
+            "theory": "Big O notation describes the upper bound of an algorithm's time or space complexity as the input size grows. It helps us analyze and compare algorithm efficiency. Common complexities include O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ), and O(n!).",
+            "visualization": "O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(2ⁿ) < O(n!)\n\nGrowth comparison for n=10:\nO(1): 1\nO(log n): ~3\nO(n): 10\nO(n log n): ~33\nO(n²): 100\nO(2ⁿ): 1024\nO(n!): 3,628,800",
+            "implementation": "Python implementation examples:",
+            "code": "# O(1) - Constant time\ndef get_first(arr):\n    return arr[0] if arr else None\n\n# O(log n) - Logarithmic time (binary search)\ndef binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1\n\n# O(n) - Linear time\ndef find_max(arr):\n    return max(arr)\n\n# O(n log n) - Linearithmic time (merge sort)\ndef merge_sort(arr):\n    if len(arr) <= 1:\n        return arr\n    mid = len(arr) // 2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])\n    return merge(left, right)\n\n# O(n²) - Quadratic time (bubble sort)\ndef bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr\n\n# O(2ⁿ) - Exponential time (naive Fibonacci)\ndef fib_recursive(n):\n    if n <= 1:\n        return n\n    return fib_recursive(n-1) + fib_recursive(n-2)",
+            "stepByStep": "1. Count the number of operations as input grows\n2. Drop constants and lower-order terms\n3. Express the growth rate in terms of n\n4. Identify the dominant term\n\nExample: 3n² + 2n + 5 → O(n²)",
+            "dryRun": "For O(n): if n=10 → 10 ops, n=100 → 100 ops → linear growth\nFor O(n²): if n=10 → 100 ops, n=100 → 10,000 ops → quadratic growth",
+            "timeComplexity": "Varies by algorithm: O(1), O(log n), O(n), O(n log n), O(n²), etc.",
+            "spaceComplexity": "Varies: O(1) for in-place, O(n) for extra arrays, O(log n) for recursion stack",
+            "advantages": "Helps compare algorithms independent of hardware. Provides a theoretical framework. Allows predicting performance at scale.",
+            "disadvantages": "Ignores constants and lower-order terms. Worst-case analysis may be overly pessimistic. Real-world performance depends on many factors.",
+            "realWorld": "Used in system design, database queries, search algorithms, and optimization problems. Helps choose the right data structure and algorithm.",
+            "interviewQuestions": [
+                "What is the time complexity of binary search?",
+                "What is the difference between Big O, Big Theta, and Big Omega?",
+                "How would you analyze the time complexity of a nested loop?"
+            ],
+            "challenges": [
+                "Find the time complexity of a nested loop with different bounds.",
+                "Analyze the complexity of a recursive function.",
+                "Compare the time complexity of different sorting algorithms."
+            ]
+        },
+        {
+            "id": "arrays",
+            "title": "Arrays",
+            "theory": "An array is a collection of elements stored at contiguous memory locations. It provides O(1) access by index. In Python, we use lists as dynamic arrays that can grow and shrink.",
+            "visualization": "[0] → [1] → [2] → [3] → ... → [n-1]\n\nEach element occupies a fixed amount of memory, and they are stored sequentially.",
+            "implementation": "In Python, we use lists as dynamic arrays with additional capabilities.",
+            "code": "# Creating an array\narr = [1, 2, 3, 4, 5]\n\n# Access (O(1))\nprint(arr[2])  # 3\n\n# Append (O(1) amortized)\narr.append(6)\n\n# Insert (O(n))\narr.insert(2, 99)\n\n# Delete (O(n))\narr.pop(2)\n\n# Search (O(n))\nprint(arr.index(4))\n\n# Slicing (O(k) where k is slice length)\nprint(arr[1:4])\n\n# Dynamic array operations\narr2 = [1, 2, 3]\narr2.extend([4, 5, 6])  # O(k)\nprint(arr2)",
+            "stepByStep": "1. Arrays store elements contiguously in memory\n2. Access by index is O(1) - compute address: base + index * size\n3. Append at end is O(1) amortized - may need to resize\n4. Insert/delete at beginning is O(n) - shift all elements\n5. Search is O(n) - must check each element",
+            "dryRun": "arr=[1,2,3] → access arr[1]=2 → append 4 → [1,2,3,4]",
+            "timeComplexity": "Access O(1), Search O(n), Insert O(n) at beginning/end O(1) amortized, Delete O(n)",
+            "spaceComplexity": "O(n) - stores n elements, with overallocation for dynamic growth",
+            "advantages": "Fast random access. Simple and widely supported. Cache-friendly due to contiguous memory.",
+            "disadvantages": "Fixed size (in static arrays). Insert/delete are O(n) for large arrays. Resizing can be expensive.",
+            "realWorld": "Used in all programming. Database indices, image processing, game development, and memory management.",
+            "interviewQuestions": [
+                "How would you implement a dynamic array?",
+                "What is the difference between an array and a linked list?",
+                "How does Python's list handle dynamic resizing?"
+            ],
+            "challenges": [
+                "Rotate an array by k positions.",
+                "Find the maximum subarray sum (Kadane's algorithm).",
+                "Find the missing number in an array."
+            ]
+        },
+        {
+            "id": "strings-dsa",
+            "title": "Strings",
+            "theory": "Strings are sequences of characters. In Python, strings are immutable. String problems often involve pattern matching, substring search, and manipulation. Common algorithms include KMP, Rabin-Karp, and Manacher's.",
+            "visualization": "H → e → l → l → o\n\nIndex: 0  1  2  3  4",
+            "implementation": "String methods and slicing in Python.",
+            "code": "# String operations\ns = \"Hello, World!\"\nprint(s[0:5])   # Hello\nprint(s[-6:])   # World!\nprint(s.lower()) # hello, world!\nprint(s.upper()) # HELLO, WORLD!\nprint(s.split(\",\")) # ['Hello', ' World!']\nprint(s.replace(\"World\", \"Python\")) # Hello, Python!\n\n# Check palindrome\nprint(s == s[::-1])\n\n# String concatenation\nprint(\"Hello\" + \" \" + \"World\")\n\n# Joining\nwords = [\"Python\", \"is\", \"awesome\"]\nprint(\" \".join(words))\n\n# String formatting\nname = \"Alice\"\nage = 25\nprint(f\"Name: {name}, Age: {age}\")",
+            "stepByStep": "1. Access characters by index\n2. Use slicing for substrings\n3. Apply string methods for transformations\n4. Strings are immutable, so methods return new strings\n5. Use join() for efficient concatenation",
+            "dryRun": "s=\"Hello, World!\" → s[0:5]=\"Hello\" → s[-6:]=\"World!\"",
+            "timeComplexity": "Most operations O(n) where n is string length",
+            "spaceComplexity": "O(n) for new strings created",
+            "advantages": "Rich set of built-in methods. Easy to manipulate text. Unicode support.",
+            "disadvantages": "Immutable → creates new strings for modifications. Can be memory-intensive for large strings.",
+            "realWorld": "Text processing, web development, data parsing, natural language processing, and compression.",
+            "interviewQuestions": [
+                "How would you reverse a string?",
+                "What is string interning in Python?",
+                "How would you find the longest palindromic substring?"
+            ],
+            "challenges": [
+                "Find the longest substring without repeating characters.",
+                "Implement string matching using KMP algorithm.",
+                "Find all anagrams in a string."
+            ]
+        },
+        {
+            "id": "hash-maps",
+            "title": "Hash Maps",
+            "theory": "A hash map (dictionary) stores key-value pairs using a hash function to compute an index into an array of buckets. It provides O(1) average time complexity for insert, delete, and lookup.",
+            "visualization": "Key → [hash function] → index → bucket → value\n\nPython's dict implementation uses open addressing with quadratic probing.",
+            "implementation": "In Python, dictionaries are implemented as hash maps with optimizations for CPython.",
+            "code": "# Creating a hash map\nhash_map = {}\n\n# Insert (O(1) average)\nhash_map[\"name\"] = \"Alice\"\nhash_map[\"age\"] = 25\n\n# Access (O(1) average)\nprint(hash_map[\"name\"])\n\n# Delete (O(1) average)\ndel hash_map[\"age\"]\n\n# Check existence\nif \"name\" in hash_map:\n    print(\"Found!\")\n\n# Iteration\nfor key, value in hash_map.items():\n    print(f\"{key}: {value}\")\n\n# Default values\nprint(hash_map.get(\"country\", \"Unknown\"))",
+            "stepByStep": "1. Compute hash of the key\n2. Use hash to find bucket index\n3. Store/retrieve value from the bucket\n4. Handle collisions with open addressing or chaining\n5. Resize when load factor exceeds threshold",
+            "dryRun": "hash(\"name\") → index 5 → store \"Alice\" at bucket 5 → retrieve with same hash",
+            "timeComplexity": "Access/Insert/Delete O(1) average, O(n) worst-case (with poor hashing)",
+            "spaceComplexity": "O(n) - stores n key-value pairs with overallocation",
+            "advantages": "Fast lookups, insertions, and deletions. Flexible key types. Hashable keys only.",
+            "disadvantages": "Unordered (until Python 3.7). Collision handling adds overhead. Memory overhead.",
+            "realWorld": "Caching, database indexing, symbol tables, counting frequencies, and routing tables.",
+            "interviewQuestions": [
+                "How does Python handle hash collisions?",
+                "What makes a good hash function?",
+                "How would you implement a LRU cache using a hash map?"
+            ],
+            "challenges": [
+                "Design a LRU cache using a hash map and doubly linked list.",
+                "Find the first non-repeating character using a hash map.",
+                "Group anagrams using hash maps."
+            ]
+        },
+        {
+            "id": "linked-lists",
+            "title": "Linked Lists",
+            "theory": "A linked list is a linear collection of nodes where each node points to the next node. It provides O(1) insert/delete at the beginning and O(n) for access. Types include singly, doubly, and circular linked lists.",
+            "visualization": "Head → [data|next] → [data|next] → [data|next] → None\n\nDoubly: Head ↔ [prev|data|next] ↔ [prev|data|next] ↔ None",
+            "implementation": "In Python, we can define a Node class and a LinkedList class.",
+            "code": "class Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n        self.size = 0\n\n    def append(self, data):\n        new_node = Node(data)\n        if not self.head:\n            self.head = new_node\n        else:\n            curr = self.head\n            while curr.next:\n                curr = curr.next\n            curr.next = new_node\n        self.size += 1\n\n    def prepend(self, data):\n        new_node = Node(data)\n        new_node.next = self.head\n        self.head = new_node\n        self.size += 1\n\n    def delete(self, data):\n        if not self.head:\n            return\n        if self.head.data == data:\n            self.head = self.head.next\n            self.size -= 1\n            return\n        curr = self.head\n        while curr.next and curr.next.data != data:\n            curr = curr.next\n        if curr.next:\n            curr.next = curr.next.next\n            self.size -= 1\n\n    def display(self):\n        curr = self.head\n        while curr:\n            print(curr.data, end=\" -> \")\n            curr = curr.next\n        print(\"None\")\n\n    def reverse(self):\n        prev = None\n        curr = self.head\n        while curr:\n            next_node = curr.next\n            curr.next = prev\n            prev = curr\n            curr = next_node\n        self.head = prev\n\n# Usage\nll = LinkedList()\nll.append(1)\nll.append(2)\nll.prepend(0)\nll.display()  # 0 -> 1 -> 2 -> None\nll.reverse()\nll.display()  # 2 -> 1 -> 0 -> None",
+            "stepByStep": "1. Each node contains data and a reference to the next node\n2. Head points to the first node\n3. Traverse by following next references\n4. Insert at head: O(1), at tail: O(n)\n5. Delete: O(n) to find, O(1) to remove\n6. Reverse: O(n) by reversing pointers",
+            "dryRun": "append(1) → head=Node(1); append(2) → head=1→2; prepend(0) → head=0→1→2",
+            "timeComplexity": "Access O(n), Search O(n), Insert at head O(1), Insert at tail O(n), Delete O(n)",
+            "spaceComplexity": "O(n) - stores n nodes",
+            "advantages": "Dynamic size. O(1) insert/delete at beginning. No memory waste.",
+            "disadvantages": "No random access. Extra memory for pointers. Cache-unfriendly.",
+            "realWorld": "Undo operations in editors, browser history, music playlists, and memory management.",
+            "interviewQuestions": [
+                "How would you detect a cycle in a linked list?",
+                "What is the difference between singly and doubly linked lists?",
+                "How would you reverse a linked list?"
+            ],
+            "challenges": [
+                "Reverse a linked list.",
+                "Find the middle node of a linked list.",
+                "Merge two sorted linked lists.",
+                "Detect and remove a cycle in a linked list."
+            ]
+        },
+        {
+            "id": "stacks",
+            "title": "Stacks",
+            "theory": "A stack is a LIFO (Last In, First Out) data structure. Elements are added and removed from the top. Common operations: push (add), pop (remove), peek (view top), and isEmpty.",
+            "visualization": "Push: [1] → [1,2] → [1,2,3]\nPop: [1,2,3] → [1,2] → [1]",
+            "implementation": "Python lists can be used as stacks with append() and pop().",
+            "code": "# Stack using list\nstack = []\n\n# Push\nstack.append(1)\nstack.append(2)\nstack.append(3)\n\n# Pop\nprint(stack.pop())  # 3\nprint(stack.pop())  # 2\n\n# Peek (top element)\nprint(stack[-1])  # 1\n\n# Check empty\nprint(len(stack) == 0)  # False\n\n# Stack implementation\nclass Stack:\n    def __init__(self):\n        self.items = []\n    \n    def push(self, item):\n        self.items.append(item)\n    \n    def pop(self):\n        if not self.is_empty():\n            return self.items.pop()\n        return None\n    \n    def peek(self):\n        if not self.is_empty():\n            return self.items[-1]\n        return None\n    \n    def is_empty(self):\n        return len(self.items) == 0\n    \n    def size(self):\n        return len(self.items)",
+            "stepByStep": "1. Push adds an element to the top\n2. Pop removes and returns the top element\n3. Peek returns the top element without removing it\n4. LIFO order is maintained\n5. Underlying list provides O(1) operations at the end",
+            "dryRun": "push(1) → [1]; push(2) → [1,2]; pop() → 2; pop() → 1",
+            "timeComplexity": "Push O(1), Pop O(1), Peek O(1), Search O(n)",
+            "spaceComplexity": "O(n) - stores n elements",
+            "advantages": "Simple and efficient. Useful for parsing, undo operations. LIFO ordering.",
+            "disadvantages": "Limited access (only top). No random access.",
+            "realWorld": "Function call stack, undo/redo, expression evaluation, backtracking, and recursion.",
+            "interviewQuestions": [
+                "How would you implement a stack using a queue?",
+                "What are the applications of stacks?",
+                "How would you check balanced parentheses using a stack?"
+            ],
+            "challenges": [
+                "Check balanced parentheses using a stack.",
+                "Evaluate a postfix expression.",
+                "Implement a stack that supports getMin() in O(1).",
+                "Design a stack that supports push, pop, and min in O(1)."
+            ]
+        },
+        {
+            "id": "queues",
+            "title": "Queues",
+            "theory": "A queue is a FIFO (First In, First Out) data structure. Elements are added at the rear and removed from the front. Common operations: enqueue (add), dequeue (remove), peek (view front), and isEmpty.",
+            "visualization": "Enqueue: [1] → [1,2] → [1,2,3]\nDequeue: [1,2,3] → [2,3] → [3]",
+            "implementation": "Use collections.deque for efficient queue operations.",
+            "code": "from collections import deque\n\n# Queue using deque\nqueue = deque()\n\n# Enqueue\nqueue.append(1)\nqueue.append(2)\nqueue.append(3)\n\n# Dequeue\nprint(queue.popleft())  # 1\nprint(queue.popleft())  # 2\n\n# Peek front\nprint(queue[0])  # 3\n\n# Check empty\nprint(len(queue) == 0)  # False\n\n# Queue implementation\nclass Queue:\n    def __init__(self):\n        self.items = deque()\n    \n    def enqueue(self, item):\n        self.items.append(item)\n    \n    def dequeue(self):\n        if not self.is_empty():\n            return self.items.popleft()\n        return None\n    \n    def peek(self):\n        if not self.is_empty():\n            return self.items[0]\n        return None\n    \n    def is_empty(self):\n        return len(self.items) == 0\n    \n    def size(self):\n        return len(self.items)",
+            "stepByStep": "1. Enqueue adds an element to the rear\n2. Dequeue removes and returns the front element\n3. FIFO order is maintained\n4. Front is the oldest element\n5. deque provides O(1) operations at both ends",
+            "dryRun": "enqueue(1) → [1]; enqueue(2) → [1,2]; dequeue() → 1; dequeue() → 2",
+            "timeComplexity": "Enqueue O(1), Dequeue O(1), Peek O(1), Search O(n)",
+            "spaceComplexity": "O(n) - stores n elements",
+            "advantages": "Simple and efficient. FIFO ordering. Good for scheduling.",
+            "disadvantages": "Limited access (only front and rear). No random access.",
+            "realWorld": "Printer queues, CPU scheduling, breadth-first search, message queues, and buffering.",
+            "interviewQuestions": [
+                "How would you implement a queue using two stacks?",
+                "What is a circular queue?",
+                "How would you implement a priority queue?"
+            ],
+            "challenges": [
+                "Implement a circular queue.",
+                "Design a rate limiter using a queue.",
+                "Implement a priority queue.",
+                "Implement a queue that supports max operations in O(1)."
+            ]
+        },
+        {
+            "id": "trees",
+            "title": "Trees",
+            "theory": "A tree is a hierarchical data structure with a root node and child nodes. Each node can have multiple children. Trees are used for hierarchical data, searching, and organization.",
+            "visualization": "    Root\n   /    \\\n  A      B\n / \\    / \\\nC   D  E   F\n\nTraversal methods:\nPreorder: Root → A → C → D → B → E → F\nInorder: C → A → D → Root → E → B → F\nPostorder: C → D → A → E → F → B → Root",
+            "implementation": "Define a Node class with children.",
+            "code": "class TreeNode:\n    def __init__(self, data):\n        self.data = data\n        self.children = []\n    \n    def add_child(self, child):\n        self.children.append(child)\n\n# Create a tree\nroot = TreeNode(\"Root\")\na = TreeNode(\"A\")\nb = TreeNode(\"B\")\nroot.add_child(a)\nroot.add_child(b)\na.add_child(TreeNode(\"C\"))\na.add_child(TreeNode(\"D\"))\nb.add_child(TreeNode(\"E\"))\nb.add_child(TreeNode(\"F\"))\n\ndef traverse(node, level=0):\n    print(\"  \" * level + str(node.data))\n    for child in node.children:\n        traverse(child, level + 1)\n\ntraverse(root)\n\n# Tree traversals\ndef preorder(node):\n    if node:\n        print(node.data, end=\" \")\n        for child in node.children:\n            preorder(child)\n\ndef postorder(node):\n    if node:\n        for child in node.children:\n            postorder(child)\n        print(node.data, end=\" \")\n\nprint(\"Preorder:\")\npreorder(root)\nprint(\"\\nPostorder:\")\npostorder(root)",
+            "stepByStep": "1. Root is the topmost node\n2. Each node can have children\n3. Nodes without children are leaves\n4. Tree is recursively defined\n5. Traversals: preorder (root, left, right), inorder (left, root, right), postorder (left, right, root)",
+            "dryRun": "Root → A, B → C, D, E, F → print with indentation",
+            "timeComplexity": "Traversal O(n), Search O(n) in general tree",
+            "spaceComplexity": "O(n) - stores n nodes",
+            "advantages": "Hierarchical representation. Efficient for certain operations. Natural for many real-world problems.",
+            "disadvantages": "No O(1) access. More complex than linear structures. Can be memory-intensive.",
+            "realWorld": "File systems, HTML DOM, organizational charts, routing algorithms, and expression trees.",
+            "interviewQuestions": [
+                "What is the difference between a tree and a graph?",
+                "What are different tree traversal methods?",
+                "How would you find the height of a tree?"
+            ],
+            "challenges": [
+                "Find the height of a tree.",
+                "Find the lowest common ancestor of two nodes.",
+                "Serialize and deserialize a tree.",
+                "Find the diameter of a tree."
+            ]
+        },
+        {
+            "id": "binary-search-trees",
+            "title": "Binary Search Trees",
+            "theory": "A Binary Search Tree (BST) is a binary tree where the left child is smaller than the parent, and the right child is larger. This property allows efficient searching, insertion, and deletion.",
+            "visualization": "     [10]\n    /    \\\n  [5]   [15]\n /  \\   /  \\\n[3] [7][13] [20]",
+            "implementation": "BST with insert, search, and delete operations.",
+            "code": "class BSTNode:\n    def __init__(self, data):\n        self.data = data\n        self.left = None\n        self.right = None\n\nclass BST:\n    def __init__(self):\n        self.root = None\n    \n    def insert(self, data):\n        if not self.root:\n            self.root = BSTNode(data)\n            return\n        curr = self.root\n        while True:\n            if data < curr.data:\n                if curr.left:\n                    curr = curr.left\n                else:\n                    curr.left = BSTNode(data)\n                    return\n            else:\n                if curr.right:\n                    curr = curr.right\n                else:\n                    curr.right = BSTNode(data)\n                    return\n    \n    def search(self, data):\n        curr = self.root\n        while curr:\n            if data == curr.data:\n                return True\n            elif data < curr.data:\n                curr = curr.left\n            else:\n                curr = curr.right\n        return False\n    \n    def inorder(self, node):\n        if node:\n            self.inorder(node.left)\n            print(node.data, end=\" \")\n            self.inorder(node.right)\n    \n    def delete(self, data):\n        self.root = self._delete(self.root, data)\n    \n    def _delete(self, node, data):\n        if not node:\n            return None\n        if data < node.data:\n            node.left = self._delete(node.left, data)\n        elif data > node.data:\n            node.right = self._delete(node.right, data)\n        else:\n            # Node with only one child or no child\n            if not node.left:\n                return node.right\n            if not node.right:\n                return node.left\n            # Node with two children\n            min_node = self._find_min(node.right)\n            node.data = min_node.data\n            node.right = self._delete(node.right, min_node.data)\n        return node\n    \n    def _find_min(self, node):\n        curr = node\n        while curr.left:\n            curr = curr.left\n        return curr\n\nbst = BST()\nbst.insert(10)\nbst.insert(5)\nbst.insert(15)\nbst.insert(3)\nbst.insert(7)\nbst.inorder(bst.root)  # 3 5 7 10 15\nbst.delete(5)\nbst.inorder(bst.root)  # 3 7 10 15",
+            "stepByStep": "1. Start at the root\n2. If target < current, go left\n3. If target > current, go right\n4. If target == current, found\n5. If null reached, not found\n6. Insert follows the same path and adds at the null position\n7. Delete has three cases: leaf, one child, two children",
+            "dryRun": "Insert 10 → root=10; Insert 5 → left of 10; Insert 15 → right of 10; Search 5 → root→left→found",
+            "timeComplexity": "Search/Insert/Delete O(log n) average, O(n) worst-case (unbalanced)",
+            "spaceComplexity": "O(n) - stores n nodes",
+            "advantages": "Fast search, insert, and delete. Inorder traversal gives sorted order. Dynamic data structure.",
+            "disadvantages": "Can become unbalanced (skewed) leading to O(n) operations. No duplicate keys.",
+            "realWorld": "Database indexing, symbol tables, spell checkers, autocomplete, and sorting.",
+            "interviewQuestions": [
+                "What is the difference between a BST and a heap?",
+                "How would you balance a BST?",
+                "What is a red-black tree?",
+                "How would you validate if a tree is a BST?"
+            ],
+            "challenges": [
+                "Validate if a tree is a BST.",
+                "Find the kth smallest element in a BST.",
+                "Implement a self-balancing BST (AVL or Red-Black tree).",
+                "Find the lowest common ancestor in a BST."
+            ]
+        },
+        {
+            "id": "heaps",
+            "title": "Heaps",
+            "theory": "A heap is a complete binary tree where each node is greater than or equal to its children (max-heap) or less than or equal (min-heap). Heaps are used for priority queues and heap sort.",
+            "visualization": "Max-heap: [100, 90, 80, 70, 60, 50, 40]\n\n        100\n       /    \\\n      90     80\n     /  \\   /  \\\n    70  60 50  40",
+            "implementation": "Python's heapq module provides min-heap operations.",
+            "code": "import heapq\n\n# Min-heap\nheap = []\nheapq.heappush(heap, 5)\nheapq.heappush(heap, 3)\nheapq.heappush(heap, 7)\nheapq.heappush(heap, 1)\n\nprint(heapq.heappop(heap))  # 1\nprint(heapq.heappop(heap))  # 3\n\n# Heapify an existing list\narr = [9, 4, 7, 1, 3]\nheapq.heapify(arr)\nprint(arr)  # [1, 3, 7, 4, 9]\n\n# Max-heap using heapq (negate values)\nmax_heap = []\nheapq.heappush(max_heap, -5)\nheapq.heappush(max_heap, -3)\nheapq.heappush(max_heap, -7)\nprint(-heapq.heappop(max_heap))  # 7\n\n# Custom heap implementation\nclass MinHeap:\n    def __init__(self):\n        self.heap = []\n    \n    def parent(self, i):\n        return (i - 1) // 2\n    \n    def left_child(self, i):\n        return 2 * i + 1\n    \n    def right_child(self, i):\n        return 2 * i + 2\n    \n    def push(self, value):\n        self.heap.append(value)\n        self._sift_up(len(self.heap) - 1)\n    \n    def pop(self):\n        if not self.heap:\n            return None\n        result = self.heap[0]\n        self.heap[0] = self.heap[-1]\n        self.heap.pop()\n        self._sift_down(0)\n        return result\n    \n    def _sift_up(self, i):\n        while i > 0 and self.heap[i] < self.heap[self.parent(i)]:\n            self.heap[i], self.heap[self.parent(i)] = self.heap[self.parent(i)], self.heap[i]\n            i = self.parent(i)\n    \n    def _sift_down(self, i):\n        min_idx = i\n        left = self.left_child(i)\n        right = self.right_child(i)\n        if left < len(self.heap) and self.heap[left] < self.heap[min_idx]:\n            min_idx = left\n        if right < len(self.heap) and self.heap[right] < self.heap[min_idx]:\n            min_idx = right\n        if min_idx != i:\n            self.heap[i], self.heap[min_idx] = self.heap[min_idx], self.heap[i]\n            self._sift_down(min_idx)",
+            "stepByStep": "1. Push adds element while maintaining heap property\n2. Pop removes the smallest (min-heap) or largest (max-heap)\n3. Heapify converts any list into a heap in O(n)\n4. Sift up: bubble up after insertion\n5. Sift down: bubble down after deletion",
+            "dryRun": "push(5) → [5]; push(3) → [3,5]; push(7) → [3,5,7]; push(1) → [1,3,7,5]; pop() → 1",
+            "timeComplexity": "Push O(log n), Pop O(log n), Peek O(1), Heapify O(n)",
+            "spaceComplexity": "O(n) - stores n elements",
+            "advantages": "Efficient priority queue operations. Fast min/max access. In-place sorting.",
+            "disadvantages": "No random access. Only efficient for priority operations.",
+            "realWorld": "Priority queues, Dijkstra's algorithm, scheduling, event simulation, and heap sort.",
+            "interviewQuestions": [
+                "What is the difference between a heap and a BST?",
+                "How would you find the kth largest element in a stream?",
+                "How would you implement a max-heap using Python's heapq?"
+            ],
+            "challenges": [
+                "Implement a max-heap using Python's heapq.",
+                "Find the median of a data stream.",
+                "Merge k sorted lists using a heap.",
+                "Find the kth largest element in an array using a heap."
+            ]
+        },
+        {
+            "id": "graphs",
+            "title": "Graphs",
+            "theory": "A graph is a collection of vertices (nodes) connected by edges. Graphs can be directed or undirected, weighted or unweighted. Common representations: adjacency list, adjacency matrix.",
+            "visualization": "A -- B -- C\n|         |\nD -- E -- F\n\nDirected: A → B → C\nWeighted: A(5)B, B(3)C",
+            "implementation": "Adjacency list representation using a dictionary.",
+            "code": "class Graph:\n    def __init__(self):\n        self.adj = {}\n    \n    def add_vertex(self, v):\n        if v not in self.adj:\n            self.adj[v] = []\n    \n    def add_edge(self, u, v, directed=False, weight=None):\n        self.add_vertex(u)\n        self.add_vertex(v)\n        if weight:\n            self.adj[u].append((v, weight))\n            if not directed:\n                self.adj[v].append((u, weight))\n        else:\n            self.adj[u].append(v)\n            if not directed:\n                self.adj[v].append(u)\n    \n    def dfs(self, start, visited=None):\n        if visited is None:\n            visited = set()\n        visited.add(start)\n        print(start, end=\" \")\n        for neighbor in self.adj.get(start, []):\n            if isinstance(neighbor, tuple):\n                neighbor = neighbor[0]\n            if neighbor not in visited:\n                self.dfs(neighbor, visited)\n    \n    def bfs(self, start):\n        visited = set([start])\n        queue = [start]\n        while queue:\n            v = queue.pop(0)\n            print(v, end=\" \")\n            for neighbor in self.adj.get(v, []):\n                if isinstance(neighbor, tuple):\n                    neighbor = neighbor[0]\n                if neighbor not in visited:\n                    visited.add(neighbor)\n                    queue.append(neighbor)\n    \n    def has_path(self, start, end, visited=None):\n        if visited is None:\n            visited = set()\n        if start == end:\n            return True\n        visited.add(start)\n        for neighbor in self.adj.get(start, []):\n            if isinstance(neighbor, tuple):\n                neighbor = neighbor[0]\n            if neighbor not in visited:\n                if self.has_path(neighbor, end, visited):\n                    return True\n        return False\n\n# Usage\ng = Graph()\ng.add_edge('A', 'B')\ng.add_edge('A', 'C')\ng.add_edge('B', 'D')\ng.add_edge('C', 'D')\nprint(\"DFS from A:\")\ng.dfs('A')  # A B D C\nprint(\"\\nBFS from A:\")\ng.bfs('A')  # A B C D\nprint(\"\\nPath from A to D:\", g.has_path('A', 'D'))  # True",
+            "stepByStep": "1. Add vertices and edges\n2. DFS: explore depth-first using recursion or stack\n3. BFS: explore breadth-first using a queue\n4. Path finding: DFS or BFS with visited set\n5. Cycle detection: DFS with recursion stack",
+            "dryRun": "Graph A-B, B-C → DFS from A: A B C; BFS from A: A B C",
+            "timeComplexity": "O(V+E) for traversal, O(V+E) for adjacency list construction",
+            "spaceComplexity": "O(V+E) - adjacency list stores all edges",
+            "advantages": "Models complex relationships. Flexible representation. Many efficient algorithms.",
+            "disadvantages": "Can be memory-intensive. Many algorithms are complex. No built-in graph type in Python.",
+            "realWorld": "Social networks, routing, web crawling, dependency resolution, and recommendation systems.",
+            "interviewQuestions": [
+                "What is the difference between DFS and BFS?",
+                "How would you detect a cycle in a graph?",
+                "How would you find the shortest path in an unweighted graph?"
+            ],
+            "challenges": [
+                "Find the shortest path in an unweighted graph (BFS).",
+                "Implement Dijkstra's algorithm for weighted graphs.",
+                "Find all connected components in a graph.",
+                "Detect cycles in a directed graph using DFS.",
+                "Topological sorting of a directed acyclic graph."
+            ]
+        },
+        {
+            "id": "tries",
+            "title": "Tries",
+            "theory": "A trie (prefix tree) is a tree-like data structure used for storing strings. Each node represents a character, and paths form words. Tries are efficient for prefix searches and autocomplete.",
+            "visualization": "Root → a → p → p → l → e\n            → p → l → y\n            → r → t",
+            "implementation": "Trie with insert, search, and prefix operations.",
+            "code": "class TrieNode:\n    def __init__(self):\n        self.children = {}\n        self.is_word = False\n        self.count = 0  # Track number of words\n\nclass Trie:\n    def __init__(self):\n        self.root = TrieNode()\n    \n    def insert(self, word):\n        node = self.root\n        for ch in word:\n            if ch not in node.children:\n                node.children[ch] = TrieNode()\n            node = node.children[ch]\n            node.count += 1\n        node.is_word = True\n    \n    def search(self, word):\n        node = self.root\n        for ch in word:\n            if ch not in node.children:\n                return False\n            node = node.children[ch]\n        return node.is_word\n    \n    def starts_with(self, prefix):\n        node = self.root\n        for ch in prefix:\n            if ch not in node.children:\n                return False\n            node = node.children[ch]\n        return True\n    \n    def count_prefix(self, prefix):\n        node = self.root\n        for ch in prefix:\n            if ch not in node.children:\n                return 0\n            node = node.children[ch]\n        return node.count\n    \n    def delete(self, word):\n        self._delete(self.root, word, 0)\n    \n    def _delete(self, node, word, index):\n        if index == len(word):\n            node.is_word = False\n            return\n        ch = word[index]\n        if ch in node.children:\n            self._delete(node.children[ch], word, index + 1)\n            node.children[ch].count -= 1\n            if node.children[ch].count == 0 and not node.children[ch].children:\n                del node.children[ch]\n    \n    def find_words_with_prefix(self, prefix):\n        node = self.root\n        for ch in prefix:\n            if ch not in node.children:\n                return []\n            node = node.children[ch]\n        words = []\n        self._collect_words(node, prefix, words)\n        return words\n    \n    def _collect_words(self, node, prefix, words):\n        if node.is_word:\n            words.append(prefix)\n        for ch, child in node.children.items():\n            self._collect_words(child, prefix + ch, words)\n\n# Usage\ntrie = Trie()\ntrie.insert(\"apple\")\ntrie.insert(\"app\")\ntrie.insert(\"apricot\")\ntrie.insert(\"banana\")\n\nprint(trie.search(\"apple\"))  # True\nprint(trie.search(\"app\"))    # True\nprint(trie.starts_with(\"app\"))  # True\nprint(trie.count_prefix(\"ap\"))  # 3\nprint(trie.find_words_with_prefix(\"ap\"))  # ['apple', 'app', 'apricot']",
+            "stepByStep": "1. Each character is a node\n2. Path from root to a word forms the word\n3. Mark the end of a word with is_word flag\n4. Count tracks number of words passing through node\n5. Delete: unmark is_word and decrement counts",
+            "dryRun": "Insert \"apple\" → a→p→p→l→e (mark end); Search \"apple\" → True; Search \"app\" → False (not marked)",
+            "timeComplexity": "Insert/Search O(L) where L is word length",
+            "spaceComplexity": "O(total characters) - stores all characters of all words",
+            "advantages": "Fast prefix search. Efficient for autocomplete and spell checking. Supports prefix-based operations.",
+            "disadvantages": "Memory-intensive for large alphabets. Can be slower than hash maps for exact matches.",
+            "realWorld": "Autocomplete, spell checkers, IP routing, word games, and dictionary implementations.",
+            "interviewQuestions": [
+                "How would you implement a trie with delete operation?",
+                "What is the difference between a trie and a hash map?",
+                "How would you find all words with a given prefix?"
+            ],
+            "challenges": [
+                "Find all words in a trie with a given prefix.",
+                "Design a system for auto-completion using a trie.",
+                "Implement a trie that supports wildcard search.",
+                "Find the longest common prefix using a trie."
+            ]
+        },
+        {
+            "id": "greedy-algorithms",
+            "title": "Greedy Algorithms",
+            "theory": "Greedy algorithms make the locally optimal choice at each step, hoping to find the global optimum. They are efficient but don't always work for all problems. Works when problem has optimal substructure.",
+            "visualization": "At each step, pick the best immediate choice without considering future consequences.\n\nExample: Coin change with US coins (1,5,10,25) → greedy works\nCoin change with (1,3,4) → greedy fails (6 → 4+1+1 vs 3+3)",
+            "implementation": "Coin change (greedy) - pick the largest denomination first.",
+            "code": "def coin_change_greedy(amount, coins):\n    coins.sort(reverse=True)\n    result = []\n    for coin in coins:\n        while amount >= coin:\n            result.append(coin)\n            amount -= coin\n    return result if amount == 0 else None\n\n# Works for US coins (1, 5, 10, 25)\nprint(coin_change_greedy(63, [1, 5, 10, 25]))  # [25, 25, 10, 1, 1, 1]\n\n# Activity selection problem\ndef activity_selection(activities):\n    activities.sort(key=lambda x: x[1])  # Sort by end time\n    selected = [activities[0]]\n    last_end = activities[0][1]\n    for start, end in activities[1:]:\n        if start >= last_end:\n            selected.append((start, end))\n            last_end = end\n    return selected\n\nactivities = [(1, 4), (3, 5), (0, 6), (5, 7), (3, 9), (5, 9), (6, 10), (8, 11), (8, 12), (2, 14), (12, 16)]\nprint(activity_selection(activities))  # [(1,4), (5,7), (8,11), (12,16)]\n\n# Fractional knapsack problem\ndef fractional_knapsack(items, capacity):\n    items.sort(key=lambda x: x[1]/x[0], reverse=True)  # Sort by value/weight ratio\n    total_value = 0\n    for weight, value in items:\n        if capacity >= weight:\n            total_value += value\n            capacity -= weight\n        else:\n            total_value += (value / weight) * capacity\n            break\n    return total_value\n\nitems = [(10, 60), (20, 100), (30, 120)]\nprint(fractional_knapsack(items, 50))  # 240.0",
+            "stepByStep": "1. Sort choices (usually descending)\n2. At each step, pick the best available option\n3. Reduce the problem\n4. Repeat until the problem is solved\n5. Verify if greedy choice works for the problem",
+            "dryRun": "amount=63, coins=[25,10,5,1] → pick 25 (rem 38), pick 25 (rem 13), pick 10 (rem 3), pick 1 three times",
+            "timeComplexity": "O(n log n) for sorting, O(n) for selection",
+            "spaceComplexity": "O(1) - in-place",
+            "advantages": "Fast and simple to implement. Good for problems with optimal substructure and matroid property.",
+            "disadvantages": "Does not always produce the optimal solution. Requires proof of optimality. Can fail for certain problems.",
+            "realWorld": "Huffman coding, Dijkstra's algorithm, Kruskal's algorithm, scheduling, and currency systems.",
+            "interviewQuestions": [
+                "What is the difference between greedy and DP?",
+                "When does a greedy algorithm work?",
+                "What is the matroid property?"
+            ],
+            "challenges": [
+                "Implement Huffman coding.",
+                "Activity selection problem.",
+                "Minimum spanning tree (Prim's or Kruskal's).",
+                "Interval scheduling maximization.",
+                "Job sequencing with deadlines."
+            ]
+        },
+        {
+            "id": "backtracking",
+            "title": "Backtracking",
+            "theory": "Backtracking is a systematic way to iterate through all possible configurations of a search space. It abandons (backtracks) when a configuration is invalid. Useful for constraint satisfaction problems.",
+            "visualization": "Try a path → if dead end, backtrack and try another path.\n\nDecision tree:\n         Start\n       /   |   \\\n     A     B     C\n    / \\   / \\   / \\\n   D   E F   G H   I",
+            "implementation": "N-Queens problem using backtracking.",
+            "code": "def solve_n_queens(n):\n    def is_safe(board, row, col):\n        # Check column\n        for i in range(row):\n            if board[i] == col:\n                return False\n            # Check diagonals\n            if abs(board[i] - col) == abs(i - row):\n                return False\n        return True\n    \n    def backtrack(row, board, result):\n        if row == n:\n            result.append(board[:])\n            return\n        for col in range(n):\n            if is_safe(board, row, col):\n                board[row] = col\n                backtrack(row + 1, board, result)\n                board[row] = -1  # Backtrack\n    \n    result = []\n    backtrack(0, [-1] * n, result)\n    return result\n\n# Sudoku solver\ndef solve_sudoku(board):\n    def is_valid(board, row, col, num):\n        for i in range(9):\n            if board[row][i] == num or board[i][col] == num:\n                return False\n        start_row, start_col = 3 * (row // 3), 3 * (col // 3)\n        for i in range(3):\n            for j in range(3):\n                if board[start_row + i][start_col + j] == num:\n                    return False\n        return True\n    \n    def backtrack(board):\n        for i in range(9):\n            for j in range(9):\n                if board[i][j] == 0:\n                    for num in range(1, 10):\n                        if is_valid(board, i, j, num):\n                            board[i][j] = num\n                            if backtrack(board):\n                                return True\n                            board[i][j] = 0\n                    return False\n        return True\n    \n    board_copy = [row[:] for row in board]\n    if backtrack(board_copy):\n        return board_copy\n    return None\n\nprint(len(solve_n_queens(4)))  # 2 solutions\n\n# Generate all permutations\ndef permutations(arr):\n    def backtrack(path, remaining, result):\n        if not remaining:\n            result.append(path[:])\n            return\n        for i in range(len(remaining)):\n            path.append(remaining[i])\n            backtrack(path, remaining[:i] + remaining[i+1:], result)\n            path.pop()\n    \n    result = []\n    backtrack([], arr, result)\n    return result\n\nprint(permutations([1, 2, 3]))  # All 6 permutations",
+            "stepByStep": "1. Place a candidate in the current position\n2. Check if it's valid\n3. If valid, move to the next position\n4. If invalid, try the next candidate\n5. If no candidate works, backtrack to the previous position\n6. Continue until all positions are filled or no solution found",
+            "dryRun": "N=4: Try row0 col0 → row1 col2 → row2 col? → no safe → backtrack",
+            "timeComplexity": "O(n!) - factorial in the worst case (permutations)",
+            "spaceComplexity": "O(n) - board and recursion stack",
+            "advantages": "Systematic and complete (finds all solutions). Works for many constraint satisfaction problems.",
+            "disadvantages": "Exponential time in the worst case. Can be slow for large problem sizes.",
+            "realWorld": "Sudoku solver, N-Queens, graph coloring, puzzle solving, combinatorial optimization, and path finding.",
+            "interviewQuestions": [
+                "How would you optimize backtracking with pruning?",
+                "What is the difference between backtracking and brute force?",
+                "How would you implement a Sudoku solver using backtracking?"
+            ],
+            "challenges": [
+                "Solve a Sudoku puzzle using backtracking.",
+                "Find all permutations of a string.",
+                "Generate all subsets of a set.",
+                "Solve the knight's tour problem.",
+                "Solve the rat in a maze problem."
+            ]
+        },
+        {
+            "id": "dynamic-programming",
+            "title": "Dynamic Programming",
+            "theory": "Dynamic Programming (DP) solves complex problems by breaking them into overlapping subproblems and storing their solutions (memoization or tabulation). It requires optimal substructure and overlapping subproblems.",
+            "visualization": "Solve subproblems once, store results, reuse them to build up to the final solution.\n\nMemoization (top-down): Solve from the top, cache results\nTabulation (bottom-up): Solve from the bottom, fill table",
+            "implementation": "Fibonacci with memoization and tabulation.",
+            "code": "# Memoization (top-down)\ndef fib_memo(n, memo={}):\n    if n in memo:\n        return memo[n]\n    if n <= 1:\n        return n\n    memo[n] = fib_memo(n-1, memo) + fib_memo(n-2, memo)\n    return memo[n]\n\n# Tabulation (bottom-up)\ndef fib_tab(n):\n    if n <= 1:\n        return n\n    dp = [0] * (n + 1)\n    dp[1] = 1\n    for i in range(2, n + 1):\n        dp[i] = dp[i-1] + dp[i-2]\n    return dp[n]\n\nprint(fib_memo(50))  # 12586269025\nprint(fib_tab(50))   # 12586269025\n\n# Knapsack problem\ndef knapsack(weights, values, capacity):\n    n = len(weights)\n    dp = [[0] * (capacity + 1) for _ in range(n + 1)]\n    for i in range(1, n + 1):\n        for w in range(1, capacity + 1):\n            if weights[i-1] <= w:\n                dp[i][w] = max(dp[i-1][w], values[i-1] + dp[i-1][w - weights[i-1]])\n            else:\n                dp[i][w] = dp[i-1][w]\n    return dp[n][capacity]\n\nweights = [2, 3, 4, 5]\nvalues = [3, 4, 5, 6]\ncapacity = 5\nprint(knapsack(weights, values, capacity))  # 7\n\n# Longest common subsequence\ndef lcs(s1, s2):\n    m, n = len(s1), len(s2)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            if s1[i-1] == s2[j-1]:\n                dp[i][j] = dp[i-1][j-1] + 1\n            else:\n                dp[i][j] = max(dp[i-1][j], dp[i][j-1])\n    return dp[m][n]\n\nprint(lcs(\"ABCDGH\", \"AEDFHR\"))  # 3 (ADH)",
+            "stepByStep": "1. Identify overlapping subproblems\n2. Define the recurrence relation\n3. Choose memoization or tabulation\n4. Build up from base cases\n5. Return the final solution\n6. Optimize space if possible",
+            "dryRun": "fib(5) → memo: fib(2)=1, fib(3)=2, fib(4)=3, fib(5)=5",
+            "timeComplexity": "O(n) - each subproblem solved once",
+            "spaceComplexity": "O(n) - memo array or call stack",
+            "advantages": "Efficient for problems with overlapping subproblems. Reduces exponential time to polynomial.",
+            "disadvantages": "Requires identifying optimal substructure. Can be complex to design. Memory-intensive.",
+            "realWorld": "Fibonacci, shortest paths (Bellman-Ford), sequence alignment, knapsack problem, and sequence alignment.",
+            "interviewQuestions": [
+                "What is the difference between memoization and tabulation?",
+                "What is the optimal substructure property?",
+                "How would you solve the knapsack problem using DP?"
+            ],
+            "challenges": [
+                "Solve the knapsack problem using DP.",
+                "Find the longest common subsequence.",
+                "Coin change problem.",
+                "Longest increasing subsequence.",
+                "Edit distance (Levenshtein distance)."
+            ]
+        },
+        {
+            "id": "bit-manipulation",
+            "title": "Bit Manipulation",
+            "theory": "Bit manipulation involves operations on individual bits of numbers. It's extremely efficient for certain problems like checking even/odd, power of two, counting bits, and bitwise operations.",
+            "visualization": "Integer 5 = 0101 in binary. Operations: &, |, ^, ~, <<, >>\n\nBit positions: 3  2  1  0\n              1  0  1  0  (10 decimal)",
+            "implementation": "Common bit manipulation operations in Python.",
+            "code": "# Check if a number is even\nis_even = lambda x: (x & 1) == 0\n\n# Check if a number is a power of two\nis_power_of_two = lambda x: x > 0 and (x & (x - 1)) == 0\n\n# Count set bits (Brian Kernighan's algorithm)\ndef count_set_bits(n):\n    count = 0\n    while n:\n        n &= n - 1\n        count += 1\n    return count\n\n# Set, clear, toggle a bit\ndef set_bit(num, position):\n    return num | (1 << position)\n\ndef clear_bit(num, position):\n    return num & ~(1 << position)\n\ndef toggle_bit(num, position):\n    return num ^ (1 << position)\n\ndef is_bit_set(num, position):\n    return (num & (1 << position)) != 0\n\n# Single non-repeating number (XOR)\ndef single_number(nums):\n    result = 0\n    for num in nums:\n        result ^= num\n    return result\n\n# Swap without temporary variable\na, b = 5, 3\na, b = b, a  # Pythonic way\n# Using XOR\na = a ^ b\nb = a ^ b\na = a ^ b\n\n# Examples\nprint(is_even(5))  # False\nprint(is_power_of_two(8))  # True\nprint(count_set_bits(13))  # 3 (1101 has 3 set bits)\nprint(set_bit(5, 1))  # 7 (5 = 0101, set bit 1 → 0111 = 7)\nprint(clear_bit(7, 1))  # 5\nprint(toggle_bit(5, 1))  # 7\nprint(single_number([1, 2, 3, 2, 1]))  # 3\n\n# Generate all subsets using bit manipulation\ndef subsets(nums):\n    n = len(nums)\n    result = []\n    for i in range(1 << n):\n        subset = []\n        for j in range(n):\n            if i & (1 << j):\n                subset.append(nums[j])\n        result.append(subset)\n    return result\n\nprint(subsets([1, 2, 3]))  # All subsets",
+            "stepByStep": "1. Understand binary representation\n2. Use bitwise operators (&, |, ^, ~, <<, >>)\n3. Use masks to manipulate specific bits\n4. Leverage bit properties for optimization\n5. Use XOR for finding unique elements\n6. Use bit manipulation for efficient algorithms",
+            "dryRun": "5 & 1 = 1 (odd); 5 & (5-1) = 4 & 4 = 4 != 0 (not power of two)",
+            "timeComplexity": "O(1) - operations are constant time",
+            "spaceComplexity": "O(1) - no extra space",
+            "advantages": "Extremely fast. Reduces time and space complexity. Great for low-level operations.",
+            "disadvantages": "Readability can be poor. Not all problems benefit from bit manipulation. Platform-dependent.",
+            "realWorld": "Networking, cryptography, embedded systems, low-level programming, game development, and flags.",
+            "interviewQuestions": [
+                "What is the use of XOR in bit manipulation?",
+                "How would you swap two numbers without a temporary variable?",
+                "How would you check if a number is a power of two?"
+            ],
+            "challenges": [
+                "Find the single non-repeating number in an array (XOR).",
+                "Count the number of bits to flip to convert A to B.",
+                "Generate all subsets using bit manipulation.",
+                "Find the missing number in an array.",
+                "Count the number of 1 bits in a number."
+            ]
+        }
+    ],
+    "interview": {
+        "Python Basics": [
+            {
+                "question": "What is Python? What are its key features?",
+                "answer": "Python is a high-level, interpreted, dynamically-typed programming language. Key features: readability, extensive standard library, dynamic typing, automatic memory management, and support for multiple paradigms (OOP, functional, procedural).",
+                "code": "print(\"Hello, World!\")",
+                "tip": "Mention Python's versatility and its use in web development, data science, automation, and more.",
+                "followUp": "What are the differences between Python 2 and Python 3?"
+            },
+            {
+                "question": "What is the difference between a list and a tuple?",
+                "answer": "Lists are mutable (can be changed) while tuples are immutable (cannot be changed). Lists use square brackets [], tuples use parentheses (). Tuples are faster and use less memory.",
+                "code": "my_list = [1,2,3]; my_tuple = (1,2,3)",
+                "tip": "Explain that tuples are faster and use less memory than lists. Use tuples for data that shouldn't change.",
+                "followUp": "When would you use a tuple instead of a list?"
+            },
+            {
+                "question": "What are the different data types in Python?",
+                "answer": "Python has several built-in data types: int, float, str, bool, list, tuple, dict, set, and NoneType. Python is dynamically typed, so you don't need to declare types.",
+                "code": "x = 5; y = 3.14; z = \"Hello\"; b = True; l = [1,2,3]; d = {\"a\":1}",
+                "tip": "Mention that Python is dynamically typed and that type checking is done at runtime.",
+                "followUp": "What is type checking in Python?"
+            },
+            {
+                "question": "What is the difference between deep copy and shallow copy?",
+                "answer": "Shallow copy creates a new object but references the same nested objects. Deep copy creates a completely independent copy of all nested objects.",
+                "code": "import copy\nlist1 = [[1,2],[3,4]]\nshallow = list1.copy()\ndeep = copy.deepcopy(list1)",
+                "tip": "Use copy.copy() for shallow copy and copy.deepcopy() for deep copy.",
+                "followUp": "When would you use deep copy vs shallow copy?"
+            }
+        ],
+        "OOP": [
+            {
+                "question": "What are the four pillars of OOP?",
+                "answer": "Encapsulation (bundling data and methods), Inheritance (creating a new class from an existing one), Polymorphism (using a single interface for different types), and Abstraction (hiding implementation details).",
+                "code": "class Animal: pass\nclass Dog(Animal): pass",
+                "tip": "Explain each pillar with a real-world analogy. Use examples to illustrate each concept.",
+                "followUp": "How does Python support multiple inheritance?"
+            },
+            {
+                "question": "What is the difference between __init__ and __new__?",
+                "answer": "__new__ creates a new instance of a class, while __init__ initializes the instance after it's created. __new__ is called before __init__ and is used for immutable types.",
+                "code": "class MyClass:\n    def __new__(cls):\n        return super().__new__(cls)",
+                "tip": "Mention that __new__ is rarely overridden in practice. It's used for singletons and custom object creation.",
+                "followUp": "When would you use __new__?"
+            },
+            {
+                "question": "What is the difference between class and instance variables?",
+                "answer": "Class variables are shared across all instances of a class. Instance variables are unique to each instance and defined in __init__.",
+                "code": "class MyClass:\n    class_var = 0  # Class variable\n    def __init__(self, value):\n        self.instance_var = value  # Instance variable",
+                "tip": "Class variables are accessed via ClassName.variable, instance variables via self.variable.",
+                "followUp": "How would you modify a class variable?"
+            }
+        ],
+        "Exception Handling": [
+            {
+                "question": "What is exception handling in Python? How does it work?",
+                "answer": "Exception handling allows you to manage runtime errors gracefully using try, except, else, and finally blocks. It prevents the program from crashing.",
+                "code": "try:\n    x = 1 / 0\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero\")",
+                "tip": "Always be specific about which exceptions you're catching. Use logging for error tracking.",
+                "followUp": "What is the difference between except and finally?"
+            },
+            {
+                "question": "What is the difference between raise and assert?",
+                "answer": "raise explicitly throws an exception. assert checks a condition and raises AssertionError if the condition is false (used for debugging).",
+                "code": "raise ValueError(\"Invalid value\")\nassert x > 0, \"x must be positive\"",
+                "tip": "Use assert for debugging and testing. Use raise for production error handling.",
+                "followUp": "When should you use assert vs raise?"
+            }
+        ],
+        "File Handling": [
+            {
+                "question": "How do you read and write files in Python?",
+                "answer": "Use the open() function to get a file object, then use read/write methods. Always close the file or use a with statement.",
+                "code": "with open(\"file.txt\", \"r\") as f:\n    content = f.read()\nwith open(\"file.txt\", \"w\") as f:\n    f.write(\"Hello\")",
+                "tip": "Always use the with statement for automatic resource management. Handle exceptions for file operations.",
+                "followUp": "What are the different file modes in Python?"
+            }
+        ],
+        "Functions": [
+            {
+                "question": "What is the difference between *args and **kwargs?",
+                "answer": "*args collects positional arguments as a tuple, while **kwargs collects keyword arguments as a dictionary.",
+                "code": "def func(*args, **kwargs):\n    print(args, kwargs)",
+                "tip": "Use *args and **kwargs for flexible function definitions. Name them anything but *args and **kwargs are convention.",
+                "followUp": "What is the order of parameters in a function definition?"
+            },
+            {
+                "question": "What are lambda functions? When would you use them?",
+                "answer": "Lambda functions are anonymous, single-expression functions defined with the lambda keyword. They are used for short operations like sorting key functions or with map/filter.",
+                "code": "square = lambda x: x**2\nlist(map(lambda x: x**2, [1,2,3]))",
+                "tip": "Use lambdas for simple operations. Use def for complex logic. Lambda functions cannot contain statements.",
+                "followUp": "What are the limitations of lambda functions?"
+            }
+        ],
+        "Recursion": [
+            {
+                "question": "What is recursion? What are its pros and cons?",
+                "answer": "Recursion is a technique where a function calls itself to solve a problem. Pros: elegant, natural for tree/graph problems. Cons: can cause stack overflow, slower than iteration.",
+                "code": "def factorial(n):\n    return 1 if n <= 1 else n * factorial(n-1)",
+                "tip": "Always define a base case to prevent infinite recursion. Consider iterative alternatives for deep recursion.",
+                "followUp": "What is tail recursion? Does Python support it?"
+            }
+        ],
+        "Collections": [
+            {
+                "question": "What is the difference between a list, tuple, set, and dictionary?",
+                "answer": "List: ordered, mutable, allows duplicates. Tuple: ordered, immutable, allows duplicates. Set: unordered, mutable, no duplicates. Dict: unordered key-value pairs, keys must be immutable.",
+                "code": "lst=[1,2,3]; tpl=(1,2,3); st={1,2,3}; dct={\"a\":1}",
+                "tip": "Choose the right collection based on your use case: list for ordered data, set for uniqueness, dict for key-value lookups.",
+                "followUp": "What is the time complexity of each collection for common operations?"
+            }
+        ],
+        "Iterators & Generators": [
+            {
+                "question": "What is the difference between an iterator and a generator?",
+                "answer": "An iterator is an object that implements __iter__ and __next__. A generator is a special type of iterator created with a yield statement.",
+                "code": "def gen():\n    yield 1\ngen = (x for x in range(10))",
+                "tip": "Generators are more memory-efficient than lists because they produce values on the fly.",
+                "followUp": "What is the benefit of using generators?"
+            }
+        ],
+        "Decorators": [
+            {
+                "question": "What are decorators in Python? How do they work?",
+                "answer": "Decorators are functions that modify the behavior of other functions. They are a powerful tool for code reuse and metaprogramming.",
+                "code": "@timer\ndef slow_function():\n    pass",
+                "tip": "Decorators are widely used for logging, timing, and access control. Use functools.wraps to preserve metadata.",
+                "followUp": "How would you implement a decorator with parameters?"
+            }
+        ],
+        "NumPy": [
+            {
+                "question": "What is NumPy? What are its key features?",
+                "answer": "NumPy is a library for numerical computing in Python. It provides N-dimensional arrays, mathematical functions, linear algebra, and random number generation.",
+                "code": "import numpy as np\narr = np.array([1,2,3])",
+                "tip": "NumPy arrays are much faster than Python lists for numerical operations. Use vectorized operations for performance.",
+                "followUp": "What is the difference between a Python list and a NumPy array?"
+            }
+        ],
+        "Pandas": [
+            {
+                "question": "What is Pandas? What are Series and DataFrames?",
+                "answer": "Pandas is a library for data manipulation and analysis. Series is a one-dimensional labeled array. DataFrame is a two-dimensional labeled data structure with columns.",
+                "code": "import pandas as pd\ndf = pd.DataFrame({\"A\":[1,2], \"B\":[3,4]})",
+                "tip": "Pandas is essential for data cleaning, transformation, and analysis. Use it for data science tasks.",
+                "followUp": "What are the most commonly used Pandas operations?"
+            }
+        ],
+        "DSA": [
+            {
+                "question": "What is the difference between a stack and a queue?",
+                "answer": "Stack is LIFO (Last In, First Out) while queue is FIFO (First In, First Out).",
+                "code": "# Stack using list\nstack = []; stack.append(1); stack.pop()\n# Queue using deque\nfrom collections import deque\nq = deque(); q.append(1); q.popleft()",
+                "tip": "Use stacks for undo/redo, queues for scheduling. Both are fundamental data structures.",
+                "followUp": "How would you implement a queue using two stacks?"
+            },
+            {
+                "question": "What is the time complexity of binary search? Why?",
+                "answer": "Binary search has O(log n) time complexity because it halves the search space at each step.",
+                "code": "def binary_search(arr, x):\n    # O(log n) implementation",
+                "tip": "Binary search requires the array to be sorted. Use it for efficient searching in sorted data.",
+                "followUp": "What is the space complexity of binary search?"
+            }
+        ],
+        "System Design": [
+            {
+                "question": "What is the difference between a monolithic and microservices architecture?",
+                "answer": "Monolithic: all components are part of one codebase. Microservices: components are independent services that communicate via APIs.",
+                "code": "No code example needed.",
+                "tip": "Microservices offer scalability and resilience but add complexity. Consider trade-offs carefully.",
+                "followUp": "What are the challenges of microservices?"
+            }
+        ]
+    }
+}
